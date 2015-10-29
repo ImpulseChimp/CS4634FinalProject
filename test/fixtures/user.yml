@@ -1,0 +1,19 @@
+<% 100.times do |n| %>
+user_<%= n %>:
+  user_id: <%= id#{n} %>
+  user_username: <%= "user#{n}" %>
+  user_first_name: <%= "first_name#{n}" %>
+  user_last_name: <%= "last_name#{n}" %>
+  user_middle_name: <%= "middle_name#{n}" %>
+  user_verified: true
+<% end %>
+
+<% 5.times do |n| %>
+unverified_user_<%= n %>:
+  user_id: <%= uv_id#{n} %>
+  user_username: <%= "uv_user#{n}" %>
+  user_first_name: <%= "uv_first_name#{n}@example.com" %>
+  user_last_name: <%= "uv_last_name#{n}" %>
+  user_middle_name: <%= "uv_middle_name#{n}" %>
+  user_verified: false
+<% end %>

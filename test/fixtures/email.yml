@@ -1,0 +1,13 @@
+<% 100.times do |n| %>
+email_<%= n %>:
+  user_id: <%= id#{n} %>
+  email_id: <%= SecureRandom.uuid %>
+  email_address: <%= email#{n}@example.com %>
+<% end %>
+
+<% 5.times do |n| %>
+unverified_email<%= n %>:
+  user_id: <%= uv_id#{n} %>
+  email_id: <%= SecureRandom.uuid %>
+  email_address: <%= uv_email#{n}@example.com %>
+<% end %>

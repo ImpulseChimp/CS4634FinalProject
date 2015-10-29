@@ -1,0 +1,11 @@
+#user_table_wrapper {
+    margin: 0 auto;
+    width: 800px;
+}
+
+#user_manager_info {
+    padding: 20px;
+    margin: 0 auto;
+    height: 100px;
+    width: 800px;
+}

@@ -1,0 +1,33 @@
+<%
+   admins = Admin.all
+
+%>
+
+<div id="admin_manager_info">
+  <div>
+    Total number of admins: <%= admins.count %>
+    </div>
+</div>
+<table id="admin_table" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Active</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% admins.each do |admin| %>
+  <% user = User.where('user_id=?', admin.user_id).first %>
+      <tr>
+        <td><%= user.user_first_name + ' ' + user.user_last_name %></td>
+        <td><%= admin.admin_active %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= stylesheet_link_tag 'plugins/jquery.dataTables.css' %>
+<%= javascript_include_tag 'plugins/jquery.dataTables.min.js' %>
+<script>
+    $("#admin_table").DataTable();
+</script>

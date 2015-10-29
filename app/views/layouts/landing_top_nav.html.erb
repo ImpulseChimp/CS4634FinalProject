@@ -1,0 +1,16 @@
+<div id="landing-nav-bar">
+
+  <div id="brand-logo">
+    <a href="/"><img src="assets/branding/placeholder_logo.png"/></a>
+  </div>
+
+  <div id="button-container">
+    <% if controller.action_name != 'signup' %>
+    <button onclick="window.location = 'signup';">Signup</button>
+    <% end %>
+
+    <% if controller.action_name != 'login' %>
+    <button onclick="window.location = 'login';">Login</button>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rails-Foundation</title>
+  <%= stylesheet_link_tag 'layouts/application.css' %>
+  <%= stylesheet_link_tag controller_name + '/' + controller.action_name %>
+
+  <%= stylesheet_link_tag 'layouts/user_top_nav' if controller.controller_name == 'user' %>
+  <%= stylesheet_link_tag 'layouts/landing_top_nav' if controller.controller_name == 'landing' %>
+  <%= stylesheet_link_tag 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
+
+  <%= javascript_include_tag 'application.js' %>
+</head>
+<body>
+
+<%= render :template => 'layouts/user_top_nav' if controller.controller_name == 'user' %>
+<%= render :template => 'layouts/landing_top_nav' if controller.controller_name == 'landing' %>
+<%= render :template => 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
+
+<%= yield %>
+
+</body>
+<footer>
+  <%= javascript_include_tag 'plugins/jquery.bpopup.min' %>
+  <%= javascript_include_tag 'plugins/notify.min' %>
+  <%= javascript_include_tag controller_name + '/' + controller.action_name %>
+</footer>
+</html>

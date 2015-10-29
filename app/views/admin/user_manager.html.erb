@@ -1,0 +1,39 @@
+<%
+   users = User.all
+
+%>
+
+<div id="user_manager_info">
+  <div>
+    Total number of users: <%= users.count %>
+  </div>
+<div>
+  Number of Active users: <%= users.where('user_verified=true').count %>
+</div>
+<div>
+  Number of Inactive users: <%= users.where('user_verified=false').count %>
+</div>
+
+</div>
+<table id="user_table" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Active</th>
+  </tr>
+  </thead>
+  <tbody>
+      <% User.all.each do |user| %>
+      <tr>
+        <td><%= user.user_first_name + ' ' + user.user_last_name %></td>
+        <td><%= user.user_verified %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<%= stylesheet_link_tag 'plugins/jquery.dataTables.css' %>
+<%= javascript_include_tag 'plugins/jquery.dataTables.min.js' %>
+<script>
+  $("#user_table").DataTable();
+</script>
