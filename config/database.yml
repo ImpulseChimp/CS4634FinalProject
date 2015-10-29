@@ -13,7 +13,7 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  database: 'development'
+  database: 'rigreview'
   username: 'development'
   password: 'development'
 #  username: 'admin5ge4WyK'
