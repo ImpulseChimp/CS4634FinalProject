@@ -1,0 +1,20 @@
+#landing-search-container {
+  margin: 100px auto;
+  width: 500px;
+  display: block;
+  position: relative;
+
+  input {
+    padding-left: 5px;
+    width: 90%;
+    height: 35px;
+    border-radius: 3px;
+    font: 16px arial,sans-serif
+  }
+
+  span {
+    margin: 0 auto;
+    display: block;
+  }
+}
+

@@ -1,3 +1,54 @@
-<div id="landing-banner">
-  <h1>Rails-Foundation Landing Page</h1>
+<%= stylesheet_link_tag 'global/search_bar_style' %>
+
+
+<div id="landing-search-container">
+  <input id="site-search-bar" placeholder="enter truck id/license plate"/>
+  <!--<span>For more information hover here</span>-->
 </div>
+
+
+<script>
+
+    var trucks = [
+        {
+            value: "BT74T-5R",
+            label: "BT74T-5R",
+            desc: "Kroger Hauling Truck",
+            icon: "jquery_32x32.png"
+        },
+        {
+            value: "HS-UTZ",
+            label: "HS-UTZ",
+            desc: "UPS Local Transport Vehicle",
+            icon: "jqueryui_32x32.png"
+        },
+        {
+            value: "THHS890",
+            label: "THHS890",
+            desc: "Best Buy 18-Wheeler That is described as",
+            icon: "sizzlejs_32x32.png"
+        }
+    ];
+
+    $( "#site-search-bar" ).autocomplete({
+        minLength: 0,
+        source: trucks,
+        focus: function( event, ui ) {
+            $( "#site-search-bar" ).val( ui.item.label );
+            return false;
+        },
+        select: function( event, ui ) {
+            $( "#project" ).val( ui.item.label );
+            $( "#project-id" ).val( ui.item.value );
+            $( "#project-description" ).html( ui.item.desc );
+            $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+
+            return false;
+        }
+    })
+            .autocomplete( "instance" )._renderItem = function( ul, item ) {
+        return $( "<li>" )
+                .append( "<a>" + "<b>" + item.label + "</b>" + "<br>" + item.desc + "</a>" )
+                .appendTo( ul );
+    };
+</script>
