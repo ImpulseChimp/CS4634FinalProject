@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'forgot_password' => 'landing#forgot_password'
   get 'signup' => 'landing#signup'
 
+  #Development Routes
+  get 'company' => 'development#company_dashboard'
+
   #User routes
   get 'user_dashboard' => 'user#dashboard'
   get 'user_settings' => 'user#settings'
@@ -33,5 +36,7 @@ Rails.application.routes.draw do
 
   # Testing Routes for development (CAN BE REMOVED IN PRODUCTION)
   get 'api_test' => 'test#api_test'
+
+
 
 end
