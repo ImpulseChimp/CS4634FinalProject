@@ -25,7 +25,9 @@
 	</div>
 	<div class="bio">
 		<h3>Bio</h3>
-		<textarea rows="5" cols="31" id="bio" placeholder="Bio"></textarea>
+
+		<textarea rows="4" cols="31" id="bio" placeholder="Bio"></textarea>
+
 	</div>
 	<br>
 	<button type="button">Submit</button>
