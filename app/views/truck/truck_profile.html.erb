@@ -1,1 +1,46 @@
+<%= stylesheet_link_tag 'global/search_bar_style' %>
 <h1>Trucker Profile</h1>
+<div id="trucker-profile">
+	<img class="profile-picture" src="">
+	<div id="trucker-name">Trucker Name</div>
+	<div id="trucker-company">Trucker Company: <a href="localhost:3000">Company Name</a></div>
+	<div id="trucker-number">Rig Reviews Number: </div>
+	<div id="trucker-license-plate">License Plate: </div>
+</div>
+
+<div id="review-table-div">
+	<table id="review-table" class="display" cellspacing = "0" width = "100%">
+		<thead>
+			<tr>
+				<th>Review Title</th>
+				<th>Positive/Negative</th>
+				<th>Date Received</th>
+				<th>Read?</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Review Title</th>
+				<th>Positive/Negative</th>
+				<th>Date Received</th>
+				<th>Read?</th>
+			</tr>
+		</tfoot>
+		<tbody>
+		//generate shit here
+			<tr>
+				<td>Example</td>
+				<td>Positive</td>
+				<td>11/18/2015</td>
+				<td>Unread</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+$(document).ready(function() {
+	$('#review-table').DataTable();
+} );
+
+</script>
