@@ -40,11 +40,15 @@ function selectOption(option) {
                 }
 
                 displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
+
+                $('#review-options-container').html(displayOptions);
             }
             else {
-                displayOptions += "<h2>How would you rate this driver?</h2>";
+                displayOptions += '<h2>How would you rate this driver?</h2><div id=rateYo"></div>';
                 displayOptions += '<textarea id="review-comment-text" placeholder="add additional comments here"></textarea>';
                 displayOptions += '<button id="submit-review-button" onclick="">Submit Review</button>';
+
+                $('#review-options-container').html(displayOptions);
             }
         }
         else { //Options is going back one screen
@@ -52,9 +56,13 @@ function selectOption(option) {
             if(currentStage == 0) {
                 addDefaultOptions();
             }
+
+            $('#review-options-container').html(displayOptions);
         }
 
-        $('#review-options-container').html(displayOptions);
+        $("#rateYo").rateYo({
+            starWidth: "40px"
+        });
 
         $( "#review-options-container" ).fadeIn( "slow", function() {
             // Animation complete.
