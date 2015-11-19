@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   #Development Routes
   get 'company' => 'development#company_dashboard'
+  get 'review_template' => 'development#review_template'
+  get 'truck_dashboard' => 'development#truck_dashboard'
 
   #User routes
   get 'user_dashboard' => 'user#dashboard'
