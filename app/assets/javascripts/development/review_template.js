@@ -29,6 +29,7 @@ function selectOption(option) {
 
         //If option is moving screen forward
         if(option >= 0) {
+            currentStage++;
             var displayOptions = '';
             if (currentStage < 2) {
                 var opList = stages[option][1];
@@ -41,12 +42,16 @@ function selectOption(option) {
                 displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
             }
             else {
-                displayOptions = "FINAL SCREEN REACHED";
+                displayOptions += "<h2>How would you rate this driver?</h2>";
+                displayOptions += '<textarea id="review-comment-text" placeholder="add additional comments here"></textarea>';
+                displayOptions += '<button id="submit-review-button" onclick="">Submit Review</button>';
             }
-            currentStage++;
         }
         else { //Options is going back one screen
             currentStage--;
+            if(currentStage == 0) {
+                addDefaultOptions();
+            }
         }
 
         $('#review-options-container').html(displayOptions);

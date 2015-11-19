@@ -23,6 +23,19 @@
   border: solid 1px black;
 }
 
+#review-comment-text {
+  width: 500px;
+  height: 250px;
+  display: block;
+  margin: 10px auto;
+}
+
+#submit-review-button {
+  width: 500px;
+  height: 45px;
+  margin: 0 auto;
+}
+
 .review-option {
   width: 100%;
   margin: 10px 0px;
