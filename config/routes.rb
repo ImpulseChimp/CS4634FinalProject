@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'company' => 'development#company_dashboard'
   get 'review_template' => 'development#review_template'
   get 'truck_dashboard' => 'development#truck_dashboard'
+  get 'settings' => 'development#settings'
 
   #User routes
   get 'user_dashboard' => 'user#dashboard'

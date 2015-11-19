@@ -12,4 +12,8 @@ class DevelopmentController < ApplicationController
 
   end
 
+  def settings
+
+  end
+  
 end
