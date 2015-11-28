@@ -65,6 +65,8 @@ class UserAPI < BaseApi
       return unsuccessful_response(@response, 'error creating a new user on server side')
     end
 
+    new_user.user_company_name = @request['company_name']
+
     # UserMailer.sign_up_email(new_user).deliver
     new_user.user_verified = true
 

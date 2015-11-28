@@ -8,6 +8,16 @@ $(function(){
     $('#user-sign-up-button').click(function(){
         attempt_sign_up();
     });
+
+    $("#commuter-option").on("click", function() {
+        $(".company-unique").hide();
+        $(".commuter-unique").show();
+    });
+
+    $("#company-option").on("click", function() {
+        $(".commuter-unique").hide();
+        $(".company-unique").show();
+    });
 });
 
 
@@ -19,6 +29,7 @@ function attempt_sign_up(){
     parameters['api_method'] = 'register';
     parameters['user_first_name'] = $('#user_first_name').val();
     parameters['user_last_name'] = $('#user_last_name').val();
+    parameters['company_name'] = $('#company_name').val();
     parameters['user_email_address'] = $('#user_email_address').val();
     parameters['user_password'] = $('#user_password').val();
     parameters['user_confirmed_password'] = $('#user_confirmed_password').val();
@@ -30,16 +41,22 @@ function attempt_sign_up(){
     var error_message = "";
 
 
-    if (parameters['user_first_name'].length == 0)
+    if (parameters['ptype'] != 'company' && parameters['user_first_name'].length == 0)
     {
         input_id = "user_first_name";
         error_message = "First name is required";
         error = true;
     }
-    else if (parameters['user_last_name'].length == 0)
+    else if (parameters['ptype'] != 'company' && parameters['user_last_name'].length == 0)
     {
         input_id = "user_last_name";
         error_message = "Last name is required";
+        error = true;
+    }
+    else if (parameters['ptype'] == 'company' && parameters['company_name'].length == 0)
+    {
+        input_id = "company_name";
+        error_message = "Company name is required";
         error = true;
     }
     else if (parameters['user_email_address'].length == 0)

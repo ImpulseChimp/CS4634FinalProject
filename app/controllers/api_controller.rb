@@ -103,6 +103,11 @@ class ApiController < ActionController::Metal
       api = AdminAPI.new(params, session, cookies)
       return_val = api.process_request
 
+    elsif (params['api'] == 'company')
+      require(api_folder + 'company_api')
+      api = AdminAPI.new(params, session, cookies)
+      return_val = api.process_request
+
     else # If API does not exist
       return_val['message'] = 'Requested API does not exist'
       return_val['success'] = false
