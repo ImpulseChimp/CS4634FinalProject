@@ -54,6 +54,7 @@ class UserAPI < BaseApi
     end
 
     new_user = create_user(@request['user_first_name'], @request['user_last_name'])
+    new_user.user_account_type = @request['ptype']
 
     return unsuccessful_response(@response, 'user can not be created') if new_user.nil?
 
@@ -156,6 +157,7 @@ class UserAPI < BaseApi
           @cookies[:auth_token] = nil
         end
 
+        @response['account_type'] = user.user_account_type
         return successful_response(@response, 'User Authenticated')
       end
 

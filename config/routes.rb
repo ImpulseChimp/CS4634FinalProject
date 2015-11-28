@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get 'user_dashboard' => 'user#dashboard'
   get 'user_settings' => 'user#settings'
 
+  get 'comdash' => 'commuter#dashboard'
+  get 'compdash' => 'company#dashboard'
+  get 'truckerdash' => 'trucker#dashboard'
+
   # ADMIN ROUTES
   get 'admin' => 'admin#login'
   get 'admin_dashboard' => 'admin#dashboard'
@@ -35,7 +39,7 @@ Rails.application.routes.draw do
   match 'api/:version/:api/:method/:p1/:p2', to: 'api#request_manager', via: :all, constraints: {}
   match 'api/:version/:api/:method/:p1/:p2/:p3', to: 'api#request_manager', via: :all, constraints: {}
 
-  get ':truck_id' => 'truck#truck_profile'
+  get ':truck_id' => 'trucker#truck_profile'
 
   # Testing Routes for development (CAN BE REMOVED IN PRODUCTION)
   get 'api_test' => 'test#api_test'

@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150525182105) do
     t.string   "user_middle_name",        limit: 64
     t.datetime "user_date_of_birth"
     t.boolean  "user_verified",           limit: 1,  default: false
+    t.string   "user_account_type",       limit: 32,                 null: false
     t.string   "verification_key",        limit: 36
     t.datetime "verification_expiration"
     t.datetime "created_at"

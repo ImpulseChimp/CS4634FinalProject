@@ -165,7 +165,13 @@ class ApplicationController < ActionController::Base
   def check_logged_in
     user = get_active_user
     if !user.nil?
-      redirect_to user_dashboard_path
+      if user.user_account_type == 'commuter'
+        redirect_to comdash_path
+      elsif user.user_account_type == 'company'
+        redirect_to compdash_path
+      else
+        redirect_to truckerdash_path
+      end
       return true
     else
       return false

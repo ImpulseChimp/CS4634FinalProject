@@ -22,6 +22,7 @@ function attempt_sign_up(){
     parameters['user_email_address'] = $('#user_email_address').val();
     parameters['user_password'] = $('#user_password').val();
     parameters['user_confirmed_password'] = $('#user_confirmed_password').val();
+    parameters['ptype'] = $('input[name="ptype"]:checked', '#signup-radio-options').val();
     parameters['HTTP_type'] = 'POST';
 
     var error = false;

@@ -11,6 +11,7 @@ class UserSetup < ActiveRecord::Migration
       t.column :user_middle_name, :string, :limit => 64
       t.column :user_date_of_birth, :datetime
       t.column :user_verified, :boolean, :default => false
+      t.column :user_account_type, :string, :limit => 32, :null => false
       t.column :verification_key, :string, :limit => 36
       t.column :verification_expiration, :datetime
       t.column :created_at, :datetime

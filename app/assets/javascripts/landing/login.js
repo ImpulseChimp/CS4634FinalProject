@@ -44,7 +44,14 @@ function attempt_login() {
 
     api_request(parameters, function(response){
         if (response['success']) {
-            window.location = 'user_dashboard';
+
+            if(response['account_type'] == 'commuter')
+                window.location = 'commuter-dashboard';
+            else if(response['account_type'] == 'company')
+                window.location = 'company-dashboard';
+            else
+                window.location = 'trucker-dashboard';
+
         }
         else{
             create_notify("user-login-button", response['message'], "bottom left", "error", 6000);

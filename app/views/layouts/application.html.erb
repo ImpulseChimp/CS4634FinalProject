@@ -7,7 +7,7 @@
   <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
   <%= stylesheet_link_tag 'plugins/jquery.dataTables' %>
 
-  <%= stylesheet_link_tag 'layouts/user_top_nav' if controller.controller_name == 'user' %>
+  <%= stylesheet_link_tag 'layouts/user_top_nav' if controller.controller_name == 'user' || controller.controller_name == 'commuter' || controller.controller_name == 'company' || controller.controller_name == 'trucker' %>
   <%= stylesheet_link_tag 'layouts/landing_top_nav' if controller.controller_name == 'landing' %>
   <%= stylesheet_link_tag 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
   <%= stylesheet_link_tag 'layouts/landing_top_nav' if controller.controller_name != 'landing' && controller.controller_name != 'user' && controller.controller_name != 'admin'  %>
@@ -20,10 +20,9 @@
 <body>
     <div id="page-container">
 
-    <%= render :template => 'layouts/user_top_nav' if controller.controller_name == 'user' %>
+    <%= render :template => 'layouts/user_top_nav' if controller.controller_name == 'user' || controller.controller_name == 'commuter' || controller.controller_name == 'company' || controller.controller_name == 'trucker' %>
     <%= render :template => 'layouts/landing_top_nav' if controller.controller_name == 'landing' %>
     <%= render :template => 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
-      <%= render :template => 'layouts/landing_top_nav' if controller.controller_name != 'landing' && controller.controller_name != 'user' && controller.controller_name != 'admin'  %>
 
     <%= yield %>
 
