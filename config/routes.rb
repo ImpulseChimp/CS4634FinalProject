@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'settings' => 'development#settings'
 
   #User routes
-  get 'user_dashboard' => 'user#dashboard'
   get 'user_settings' => 'user#settings'
 
   get 'comdash' => 'commuter#dashboard'

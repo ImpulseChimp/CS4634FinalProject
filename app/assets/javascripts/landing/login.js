@@ -46,11 +46,11 @@ function attempt_login() {
         if (response['success']) {
 
             if(response['account_type'] == 'commuter')
-                window.location = 'commuter-dashboard';
+                window.location = 'comdash';
             else if(response['account_type'] == 'company')
-                window.location = 'company-dashboard';
+                window.location = 'compdash';
             else
-                window.location = 'trucker-dashboard';
+                window.location = 'truckerdash';
 
         }
         else{

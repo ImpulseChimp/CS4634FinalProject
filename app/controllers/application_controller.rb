@@ -98,6 +98,45 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def verify_commuter
+    user = get_active_user
+    if !user.nil? && user.user_account_type == 'commuter'
+      return true
+    else
+      return false
+    end
+  end
+
+  def verify_company
+    user = get_active_user
+    if !user.nil? && user.user_account_type == 'company'
+      return true
+    else
+      return false
+    end
+  end
+
+  def verify_trucker
+    user = get_active_user
+    if !user.nil? && user.user_account_type == 'trucker'
+      return true
+    else
+      redirect_to_home
+      return false
+    end
+  end
+
+  def redirect_to_home
+    h_url = get_user_home_url
+    if h_url == 'comdash'
+      redirect_to comdash_path
+    elsif h_url == 'compdash'
+      redirect_to compdash_path
+    elsif h_url == 'truckerdash'
+      redirect_to truckerdash_path
+    end
+  end
+
   def validateAdminAuthToken
     admin = get_active_admin
     if !admin.nil?
@@ -175,6 +214,21 @@ class ApplicationController < ActionController::Base
       return true
     else
       return false
+    end
+  end
+
+  def get_user_home_url
+    user = get_active_user
+    if !user.nil?
+      if user.user_account_type == 'commuter'
+        return 'comdash'
+      elsif user.user_account_type == 'company'
+        return 'compdash'
+      else
+        return 'truckerdash'
+      end
+    else
+      return 'no_user'
     end
   end
 
