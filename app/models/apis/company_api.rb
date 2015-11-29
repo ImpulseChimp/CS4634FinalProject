@@ -1,5 +1,5 @@
 require_relative('base_api')
-class AdminAPI < BaseApi
+class CompanyApi < BaseApi
 
   def initialize(request, session, cookies)
     super(request, session, cookies)
