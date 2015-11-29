@@ -1,3 +1,18 @@
-<h1>Trucker Public Profile</h1>
+<div class="page-container">
+
+  <div id="truck-description-container">
+
+    <div id="photo-container">
+      <img src=""/>
+    </div>
+
+    <div id="description-container">
+      <span><label>Company:</label> <%= @company_name %></span>
+      <span><label>License Plate:</label> <%= @license_plate %></span>
+      <span><label>Rig Review Code:</label> <%= @truck_code %></span>
+    </div>
+  </div>
 
 <%= link_to 'Review Here', review_path(:truck_id => @truck_id) %>
+
+</div>

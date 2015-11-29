@@ -17,7 +17,10 @@ class TruckerController < ApplicationController
       end
     end
 
+    @company_name = truck.company.company_name
     @truck_id = truck.truck_id
+    @license_plate = truck.truck_license_plate
+    @truck_code = truck.truck_code
   end
 
   def no_truck_found
