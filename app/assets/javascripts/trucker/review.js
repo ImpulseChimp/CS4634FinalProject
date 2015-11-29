@@ -21,6 +21,35 @@ function addDefaultOptions() {
     $('#review-options-container').html(defaultElements);
 }
 
+function submitReview(){
+    //validate review
+
+
+    var parameters = {};
+    parameters['version'] = 'v1';
+    parameters['api_name'] = 'truck';
+    parameters['api_method'] = 'submit-review';
+    parameters['truck_id'] = location.search.split('truck_id=')[1];
+    parameters['star_rating'] = $("#rateYo").rateYo("rating");
+    parameters['comments'] = $('#review-comment-text').val();
+    parameters['decision_tree'] = 'good/ok/best_driver';
+    parameters['HTTP_type'] = 'POST';
+
+    alert(parameters['truck_id'] + ' ' + parameters['comments'] + ' ' + parameters['star_rating'] + ' ' + parameters['decision_tree']);
+
+    api_request(parameters, function(response){
+        if(response['success']) {
+            alert("Review successfully submitted");
+        }
+        else {
+            alert("Error submitting review");
+        }
+    });
+    //send review
+
+    //change to thank you screen
+}
+
 function selectOption(option) {
 
     $( "#review-options-container" ).fadeOut( "slow", function() {
@@ -44,10 +73,9 @@ function selectOption(option) {
                 $('#review-options-container').html(displayOptions);
             }
             else {
-                displayOptions += '<h2>How would you rate this driver?</h2><div id=rateYo"></div>';
-                displayOptions += '<textarea id="review-comment-text" placeholder="add additional comments here"></textarea>';
-                displayOptions += '<button id="submit-review-button" onclick="">Submit Review</button>';
-
+                $( "#review-submission-page" ).fadeIn( "slow", function() {
+                    return true;
+                });
                 $('#review-options-container').html(displayOptions);
             }
         }
@@ -60,12 +88,10 @@ function selectOption(option) {
             $('#review-options-container').html(displayOptions);
         }
 
-        $("#rateYo").rateYo({
-            starWidth: "40px"
-        });
+
 
         $( "#review-options-container" ).fadeIn( "slow", function() {
-            // Animation complete.
+
         });
     });
 

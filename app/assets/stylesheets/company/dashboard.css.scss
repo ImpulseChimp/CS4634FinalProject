@@ -30,7 +30,11 @@
   }
 
   #trucks-list {
-
+    .truck-list-container {
+      width: 100%;
+      height: 35px;
+      border-bottom: solid 1px black;
+    }
   }
 }
 

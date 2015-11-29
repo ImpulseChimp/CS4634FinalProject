@@ -8,7 +8,11 @@
     <h2>Truck Management <button id="add-truck">Add Truck +</button></h2>
   </div>
   <div id="trucks-list">
-
+    <% @company.trucks.each do |truck| %>
+        <div id="<%= truck.truck_id %>" class="truck-list-container">
+          <span><%= truck.truck_code %></span>
+        </div>
+    <% end %>
   </div>
 </div>
 
