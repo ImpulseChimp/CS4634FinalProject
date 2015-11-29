@@ -35,11 +35,13 @@ function submitReview(){
     parameters['decision_tree'] = 'good/ok/best_driver';
     parameters['HTTP_type'] = 'POST';
 
-    alert(parameters['truck_id'] + ' ' + parameters['comments'] + ' ' + parameters['star_rating'] + ' ' + parameters['decision_tree']);
-
     api_request(parameters, function(response){
         if(response['success']) {
-            alert("Review successfully submitted");
+            $( "#review-submission-page" ).fadeOut( "slow", function() {
+                $( "#review-completed-container" ).fadeIn( "slow", function() {
+
+                });
+            });
         }
         else {
             alert("Error submitting review");

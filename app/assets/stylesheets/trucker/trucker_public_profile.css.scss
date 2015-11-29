@@ -10,7 +10,7 @@
       display: inline-block;
 
       img {
-        width: 150px;
+        width: 300px;
         height: 150px;
       }
     }
@@ -24,6 +24,22 @@
     }
 
   }
+}
+
+#action-container {
+  margin: 0 auto;
+  width: 500px;
+}
+
+#review-button {
+  width: 500px;
+  height: 65px;
+  font-size: 22px;
+  margin: 0 auto;
+}
+
+#review-button:hover {
+  border: solid 3px black;
 }
 
 @media (max-width: 1200px) {

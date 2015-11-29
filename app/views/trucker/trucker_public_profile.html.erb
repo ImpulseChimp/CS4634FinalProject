@@ -3,7 +3,7 @@
   <div id="truck-description-container">
 
     <div id="photo-container">
-      <img src=""/>
+      <img src="<%= @truck_img_src %>"/>
     </div>
 
     <div id="description-container">
@@ -11,11 +11,15 @@
       <span><label>Company:</label> <%= @company_name %></span>
       <span><label>License Plate:</label> <%= @license_plate %></span>
       <span><label>Rig Review Code:</label> <%= @truck_code %></span>
+      <span>Reviewed by <%= @review_count %> people</span>
     </div>
   </div>
 
-<%= link_to 'Review Here', review_path(:truck_id => @truck_id) %>
-
+  <div id="action-container">
+    <a href="/review?truck_id=<%= @truck_id %>">
+      <button id="review-button">Write a review</button>
+    </a>
+  </div>
 
   <script>
       $(function () {

@@ -17,18 +17,21 @@ class TruckerController < ApplicationController
       end
     end
 
+    @truck_img_src = '/assets/truck_default_image.png'
     @company_name = truck.company.company_name
     @truck_id = truck.truck_id
     @license_plate = truck.truck_license_plate
     @truck_code = truck.truck_code
 
-    if truck.reviews.all.size > 0
+    @review_count = truck.reviews.all.size
+
+    if @review_count > 0
       score_total = 0
       truck.reviews.each do |review|
         score_total += review.review_score
       end
 
-      @star_rating = score_total/truck.reviews.all.size
+      @star_rating = score_total/@review_count
     else
       @star_rating = 0;
     end

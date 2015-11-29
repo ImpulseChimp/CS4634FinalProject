@@ -1,5 +1,4 @@
 class ApiController < ActionController::Metal
-  unloadable
 
   @error_message
 

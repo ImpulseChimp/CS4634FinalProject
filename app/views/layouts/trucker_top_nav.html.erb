@@ -1,9 +1,14 @@
 <div id="user-nav-bar">
-  <div id="brand-logo">
-    <a href="truckerdash"><img src="assets/branding/placeholder_logo.png"/></a>
-  </div>
+  <div id="user-nav-inner-content">
+    <div id="brand-logo">
+      <a href="truckerdash"><img src="assets/branding/placeholder_logo.png"/></a>
+    </div>
 
-  <div id="button-container">
-    <button id="logout-button">Logout</button>
+    <%= controller.get_active_user.truck.company.company_name %>
+
+    <a href="settings"><button>Settings</button></a>
+    <div id="button-container">
+      <button id="logout-button">Logout</button>
+    </div>
   </div>
 </div>

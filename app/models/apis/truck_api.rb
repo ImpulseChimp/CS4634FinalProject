@@ -45,6 +45,13 @@ class TruckApi < BaseApi
   def submit_review
     @response = {}
 
+    user = get_active_user
+
+    user_id = 'n/a'
+    if !user.nil?
+      user_id = user.user_id
+    end
+
     param_list = %w(truck_id star_rating comments decision_tree)
     return unsuccessful_response(@response, 'Invalid request') if !valid_api_request('POST', @request['HTTP_type'], param_list, true)
 
@@ -53,9 +60,8 @@ class TruckApi < BaseApi
 
     new_review = Review.new(:review_id => SecureRandom.uuid, :truck_id => truck.truck_id,
              :review_score => @request['star_rating'], :review_text => @request['comments'],
-             :decision_tree => @request['decision_tree'], :user_id => truck.user.user_id)
+             :decision_tree => @request['decision_tree'], :company_id => truck.company_id, :user_id => user_id)
     new_review.save
-
 
     return successful_response(@response, 'Review Submitted')
   end

@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   has_one :company, :primary_key => :user_id
+  has_one :truck, :primary_key => :user_id
   has_one :email, :primary_key => :user_id
   has_one :password, :primary_key => :user_id
   has_one :auth_token, :primary_key => :user_id
+  has_many :reviews, :primary_key => :user_id
 
   # validates_length_of user_id, :is => 36
   # validates_presence_of user_id, user_first_name, user_last_name

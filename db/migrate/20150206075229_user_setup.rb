@@ -41,8 +41,9 @@ class UserSetup < ActiveRecord::Migration
     create_table :reviews do |t|
       t.column :review_id, :string, :limit => 36, :null => false
       t.column :truck_id, :string, :limit => 36, :null => false
-      t.column :user_id, :string, :limit => 36, :null => false
-      t.column :review_score, :string, :limit => 36
+      t.column :company_id, :string, :limit => 36, :null => false
+      t.column :user_id, :string, :limit => 36
+      t.column :review_score, :float
       t.column :review_text, :text
       t.column :decision_tree, :text
       t.column :created_at, :datetime

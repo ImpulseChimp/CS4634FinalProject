@@ -79,8 +79,9 @@ ActiveRecord::Schema.define(version: 20150525182105) do
   create_table "reviews", force: :cascade do |t|
     t.string   "review_id",     limit: 36,    null: false
     t.string   "truck_id",      limit: 36,    null: false
-    t.string   "user_id",       limit: 36,    null: false
-    t.string   "review_score",  limit: 36
+    t.string   "company_id",    limit: 36,    null: false
+    t.string   "user_id",       limit: 36
+    t.float    "review_score",  limit: 24
     t.text     "review_text",   limit: 65535
     t.text     "decision_tree", limit: 65535
     t.datetime "created_at"
