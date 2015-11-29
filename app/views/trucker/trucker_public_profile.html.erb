@@ -7,6 +7,7 @@
     </div>
 
     <div id="description-container">
+      <div id="rateYo"></div>
       <span><label>Company:</label> <%= @company_name %></span>
       <span><label>License Plate:</label> <%= @license_plate %></span>
       <span><label>Rig Review Code:</label> <%= @truck_code %></span>
@@ -15,4 +16,13 @@
 
 <%= link_to 'Review Here', review_path(:truck_id => @truck_id) %>
 
+
+  <script>
+      $(function () {
+          $("#rateYo").rateYo({
+              rating: <%= @star_rating %>,
+              readOnly: true
+          });
+      });
+  </script>
 </div>
