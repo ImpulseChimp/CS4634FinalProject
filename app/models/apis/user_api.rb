@@ -65,7 +65,12 @@ class UserAPI < BaseApi
       return unsuccessful_response(@response, 'error creating a new user on server side')
     end
 
-    new_user.user_company_name = @request['company_name']
+    if new_user.user_account_type == 'company'
+      comp_uuid = SecureRandom.uuid
+      new_user.company_id = comp_uuid
+      company = Company.new(:user_id => new_user.user_id, :company_id => comp_uuid, :company_name => @request['company_name'])
+      company.save
+    end
 
     # UserMailer.sign_up_email(new_user).deliver
     new_user.user_verified = true

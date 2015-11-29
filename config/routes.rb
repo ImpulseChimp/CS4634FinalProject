@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   match 'api/:version/:api/:method/:p1/:p2', to: 'api#request_manager', via: :all, constraints: {}
   match 'api/:version/:api/:method/:p1/:p2/:p3', to: 'api#request_manager', via: :all, constraints: {}
 
-  get ':truck_id' => 'trucker#truck_profile'
+  get ':truck_id' => 'trucker#trucker_public_profile'
 
   # Testing Routes for development (CAN BE REMOVED IN PRODUCTION)
   get 'api_test' => 'test#api_test'
