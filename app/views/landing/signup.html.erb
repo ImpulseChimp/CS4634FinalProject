@@ -4,12 +4,16 @@
 
   <div id="user-sign-up-input-form-wrapper">
 
-    <div class="input_wrapper">
+    <div class="input_wrapper commuter-unique">
       <input id="user_first_name" class="user-sign-up-input" name="user-first-name" placeholder="first name"/>
     </div>
 
-    <div class="input_wrapper">
+    <div class="input_wrapper commuter-unique">
       <input id="user_last_name" class="user-sign-up-input" name="user-last-name" placeholder="last name"/>
+    </div>
+
+    <div class="input_wrapper company-unique" style="display: none;">
+      <input id="company_name" class="user-sign-up-input" name="company-name" placeholder="company name"/>
     </div>
 
     <div class="input_wrapper">
@@ -22,6 +26,12 @@
 
     <div class="input_wrapper">
       <input id="user_confirmed_password" class="user-sign-up-input" name="user-confirmed-password" placeholder="confirm password" type="password"/>
+    </div>
+
+    <div id="signup-radio-options">
+      You are a<br>
+      <input id="commuter-option" type="radio" name="ptype" value="commuter" checked="checked">Commuter<br>
+      <input id="company-option" type="radio" name="ptype" value="company">Company
     </div>
 
     <div class="input_wrapper">

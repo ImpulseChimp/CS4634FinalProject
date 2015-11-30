@@ -4,4 +4,16 @@ class DevelopmentController < ApplicationController
 
   end
 
+  def review_template
+
+  end
+
+  def truck_dashboard
+
+  end
+
+  def settings
+
+  end
+  
 end

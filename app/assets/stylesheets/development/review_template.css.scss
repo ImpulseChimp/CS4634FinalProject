@@ -1,0 +1,55 @@
+.page-container {
+  height: 100%;
+  width: 100%;
+}
+
+#review-title-container {
+  h1 {
+    margin: 0 auto;
+  }
+}
+
+#review-container {
+  background-color: #ebe8e9;
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  display: block;
+}
+
+#review-options-container {
+  width: 80%;
+  margin: 20px auto;
+  border: solid 1px black;
+}
+
+#review-comment-text {
+  width: 500px;
+  height: 250px;
+  display: block;
+  margin: 10px auto;
+}
+
+#submit-review-button {
+  width: 500px;
+  height: 45px;
+  margin: 0 auto;
+}
+
+.review-option {
+  width: 100%;
+  margin: 10px 0px;
+  height: 75px;
+  border: solid 1px black;
+  border-radius: 5px;
+
+  .option-text {
+
+  }
+}
+
+.review-option:hover {
+  background-color: orange;
+  border: solid 3px black;
+  cursor: pointer;
+}

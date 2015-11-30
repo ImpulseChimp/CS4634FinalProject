@@ -4,11 +4,15 @@
   <title>Rig Reviews</title>
   <%= stylesheet_link_tag 'layouts/application.css' %>
   <%= stylesheet_link_tag controller_name + '/' + controller.action_name %>
+  <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
+  <%= stylesheet_link_tag 'plugins/jquery.dataTables' %>
 
-  <%= stylesheet_link_tag 'layouts/user_top_nav' if controller.controller_name == 'user' %>
-  <%= stylesheet_link_tag 'layouts/landing_top_nav' if controller.controller_name == 'landing' %>
+  <% home_url = controller.get_user_home_url %>
+  <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash'%>
+  <%= stylesheet_link_tag 'layouts/company_top_nav' if home_url == 'compdash'%>
+  <%= stylesheet_link_tag 'layouts/trucker_top_nav' if home_url == 'truckerdash'%>
+  <%= stylesheet_link_tag 'layouts/landing_top_nav' if home_url == 'no_user' && controller.controller_name != 'admin'%>
   <%= stylesheet_link_tag 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
-  <%= stylesheet_link_tag 'layouts/landing_top_nav' if controller.controller_name != 'landing' && controller.controller_name != 'user' && controller.controller_name != 'admin'  %>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
@@ -18,10 +22,11 @@
 <body>
     <div id="page-container">
 
-    <%= render :template => 'layouts/user_top_nav' if controller.controller_name == 'user' %>
-    <%= render :template => 'layouts/landing_top_nav' if controller.controller_name == 'landing' %>
-    <%= render :template => 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
-      <%= render :template => 'layouts/landing_top_nav' if controller.controller_name != 'landing' && controller.controller_name != 'user' && controller.controller_name != 'admin'  %>
+      <%= render :template => 'layouts/commuter_top_nav' if home_url == 'comdash' %>
+      <%= render :template => 'layouts/company_top_nav' if home_url == 'compdash' %>
+      <%= render :template => 'layouts/trucker_top_nav' if home_url == 'truckerdash' %>
+      <%= render :template => 'layouts/landing_top_nav' if home_url == 'no_user' && controller.controller_name != 'admin' %>
+      <%= render :template => 'layouts/admin_top_nav' if controller.controller_name == 'admin' && controller.action_name != 'login' %>
 
     <%= yield %>
 
@@ -29,6 +34,8 @@
 </body>
 <footer>
   <%= javascript_include_tag 'plugins/jquery.bpopup.min' %>
+  <%= javascript_include_tag 'plugins/jquery.rateyo.min' %>
+  <%= javascript_include_tag 'plugins/jquery.dataTables.min' %>
   <%= javascript_include_tag 'plugins/notify.min' %>
   <%= javascript_include_tag controller_name + '/' + controller.action_name %>
 </footer>

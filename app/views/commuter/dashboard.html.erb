@@ -1,0 +1,134 @@
+<%= stylesheet_link_tag 'global/search_bar_style' %>
+
+<div class="page-container">
+    <div id="landing-summary">
+      <%= image_tag("branding/rr_logo.png", :id=>'landing_logo') %>
+      <h1>Search Rig Reviews</h1>
+      <p>Find a truck, leave a review. Simple, fast, effective.</p>
+    </div>
+
+    <div id="landing-search-container">
+      <div>
+        <input id="site-search-bar" style="text-transform:uppercase" placeholder="enter truck id/license plate"/>
+        <button id="search-truck-button">Search</button>
+        <!--<span>For more information hover here</span>-->
+      </div>
+    </div>
+
+    <div id="reviews-container">
+      <% if @reviews.size == 0 %>
+        You have not reviewed any trucks yet
+      <% else %>
+          Your Review Summary (<%= @reviews.size %>)
+          <table id="review_table">
+            <thead>
+                <th>License Plate</th>
+                <th>RR Code</th>
+                <th>Company</th>
+                <th>Rating</th>
+                <th></th>
+            </thead>
+            <tbody>
+        <% @reviews.all.each do |review| %>
+            <% truck = Truck.where('truck_id=?', review.truck_id).first %>
+                <% company = Company.where('company_id=?', review.company_id).first %>
+            <tr>
+              <td><%= truck.truck_license_plate %></td>
+                <td><%= truck.truck_code %></td>
+              <td><%= company.company_name %></td>
+              <td><%= review.review_score %></td>
+              <td><button>View</button></td>
+            </tr>
+        <% end %>
+        </tbody>
+          </table>
+          <a href="/all-reviews">View all reviews</a>
+      <% end %>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    get_trucks();
+
+    function get_trucks() {
+        var parameters = {};
+        parameters['version'] = 'v1';
+        parameters['api_name'] = 'truck';
+        parameters['api_method'] = 'get-all-trucks';
+
+        api_request(parameters, function(response){
+            if (response['success']) {
+                loadTrucksIntoView(response['trucks']);
+            }
+            else{
+                alert("Error loading trucks");
+            }
+        });
+    }
+
+    function loadTrucksIntoView(trucks) {
+
+        var processedTrucks = [];
+
+        var i = 0;
+        for (var truck in trucks){
+            processedTrucks[i] = trucks[truck];
+            i++;
+        }
+
+//        var preTrucks = [
+//            {
+//                value: "BT74T-5R",
+//                label: "BT74T-5R",
+//                desc: "Kroger Hauling Truck",
+//                icon: "jquery_32x32.png"
+//            },
+//            {
+//                value: "HS-UTZ",
+//                label: "HS-UTZ",
+//                desc: "UPS Local Transport Vehicle",
+//                icon: "jqueryui_32x32.png"
+//            }
+//        ];
+
+        $( "#site-search-bar" ).autocomplete({
+            minLength: 0,
+            maxLength: 2,
+            source: processedTrucks,
+            focus: function( event, ui ) {
+                $( "#site-search-bar" ).val( ui.item.label );
+                return false;
+            },
+            source: function(request, response) {
+                var results = $.ui.autocomplete.filter(processedTrucks, request.term);
+                response(results.slice(0, 5));
+            },
+            select: function( event, ui ) {
+                document.location.href = "http://" + window.location.host + "/" + ui.item.label;
+                return false;
+            }
+        })
+                .autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+                    .append( '<a>' + "<b>" + item.label + "</b>" + "<br>" + item.company_name + "</a>" )
+                    .appendTo( ul );
+        };
+    }
+
+
+
+
+
+</script>

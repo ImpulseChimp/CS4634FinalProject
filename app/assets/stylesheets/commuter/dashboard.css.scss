@@ -1,0 +1,43 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#landing-summary {
+  margin-top: 100px;
+  color: black;
+  margin: 0 auto;
+  width: 400px;
+
+  h1 {
+    display: inline-block;
+  }
+
+  #landing_logo {
+    width: 50px;
+    display: inline-block;
+  }
+}
+
+#reviews-container {
+  width: 100%;
+  margin-top: 30px;
+  min-height: 300px;
+  border: solid 1px black;
+}
+
+#review_table {
+  width: 60%;
+  margin: 0 auto;
+
+  td {
+    text-align: center;
+    overflow: hidden;
+  }
+
+  tr:hover {
+    background-color: #ebe8e9;
+  }
+}

@@ -162,3 +162,9 @@ function api_request(pars, callback) {
     }
 
 }
+
+$(function(){
+    $('#logout-button').on("click", function(){
+        logout();
+    });
+});

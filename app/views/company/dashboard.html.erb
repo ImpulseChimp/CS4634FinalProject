@@ -1,0 +1,57 @@
+<div class="page-container">
+
+  <img id="company-image"/>
+<h3><%= controller.get_active_user.user_company_name %></h3>
+
+<div id="trucks-list-container">
+  <div id="trucks-list-header">
+    <h2>Truck Management <button id="add-truck">Add Truck +</button></h2>
+  </div>
+  <div id="trucks-list">
+    <% @company.trucks.each do |truck| %>
+        <div id="<%= truck.truck_id %>" class="truck-list-container">
+          <span><%= truck.truck_code %></span>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="add-truck-popup" style="display: none;">
+  <div class="popup-header">
+    <h2>Add New Truck</h2>
+    <div>X</div>
+  </div>
+
+  <div id="add-truck-explanation">
+      <p>
+        Upon submission, an invite will be sent to the driver at the below email address
+      </p>
+  </div>
+
+  <div id="add-truck-popup-input-container">
+
+      <div class="add-truck-popup-input">
+        <label>e-mail</label>
+        <input id="driver-email" class="new-truck-input" placeholder="driver email"/>
+      </div>
+
+      <div class="add-truck-popup-input">
+        <label>license</label>
+        <input id="license-plate" class="new-truck-input" placeholder="truck license plate"/>
+      </div>
+
+  </div>
+
+  <button id="submit-new-truck">Submit</button>
+</div>
+
+<div id="truck-reviews">
+  <h2>
+    Received Reviews:
+  </h2>
+  <div>
+
+  </div>
+</div>
+
+</div>

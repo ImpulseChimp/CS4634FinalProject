@@ -54,6 +54,7 @@ class UserAPI < BaseApi
     end
 
     new_user = create_user(@request['user_first_name'], @request['user_last_name'])
+    new_user.user_account_type = @request['ptype']
 
     return unsuccessful_response(@response, 'user can not be created') if new_user.nil?
 
@@ -62,6 +63,13 @@ class UserAPI < BaseApi
 
     if new_email.nil? || new_password.nil?
       return unsuccessful_response(@response, 'error creating a new user on server side')
+    end
+
+    if new_user.user_account_type == 'company'
+      comp_uuid = SecureRandom.uuid
+      new_user.company_id = comp_uuid
+      company = Company.new(:user_id => new_user.user_id, :company_id => comp_uuid, :company_name => @request['company_name'])
+      company.save
     end
 
     # UserMailer.sign_up_email(new_user).deliver
@@ -156,6 +164,7 @@ class UserAPI < BaseApi
           @cookies[:auth_token] = nil
         end
 
+        @response['account_type'] = user.user_account_type
         return successful_response(@response, 'User Authenticated')
       end
 

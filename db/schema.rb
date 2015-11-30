@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20150525182105) do
     t.datetime "updated_at"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string   "user_id",      limit: 36,  null: false
+    t.string   "company_id",   limit: 36,  null: false
+    t.string   "company_name", limit: 256
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "emails", force: :cascade do |t|
     t.string   "user_id",       limit: 36,  null: false
     t.string   "email_id",      limit: 36,  null: false
@@ -68,14 +76,39 @@ ActiveRecord::Schema.define(version: 20150525182105) do
     t.datetime "updated_at"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string   "review_id",     limit: 36,    null: false
+    t.string   "truck_id",      limit: 36,    null: false
+    t.string   "company_id",    limit: 36,    null: false
+    t.string   "user_id",       limit: 36
+    t.float    "review_score",  limit: 24
+    t.text     "review_text",   limit: 65535
+    t.text     "decision_tree", limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trucks", force: :cascade do |t|
+    t.string   "user_id",             limit: 36, null: false
+    t.string   "company_id",          limit: 36, null: false
+    t.string   "truck_id",            limit: 36, null: false
+    t.string   "truck_code",          limit: 36
+    t.string   "truck_license_plate", limit: 36
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "user_id",                 limit: 36,                 null: false
-    t.string   "user_username",           limit: 64,                 null: false
+    t.string   "user_id",                 limit: 36,                  null: false
+    t.string   "company_id",              limit: 36
+    t.string   "user_username",           limit: 64,                  null: false
     t.string   "user_first_name",         limit: 64
     t.string   "user_last_name",          limit: 64
     t.string   "user_middle_name",        limit: 64
     t.datetime "user_date_of_birth"
-    t.boolean  "user_verified",           limit: 1,  default: false
+    t.string   "user_company_name",       limit: 256
+    t.boolean  "user_verified",           limit: 1,   default: false
+    t.string   "user_account_type",       limit: 32,                  null: false
     t.string   "verification_key",        limit: 36
     t.datetime "verification_expiration"
     t.datetime "created_at"

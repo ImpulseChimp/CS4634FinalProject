@@ -1,0 +1,14 @@
+.main {
+  margin: 0 auto;
+  width: 80%;
+  height: 100vh;
+  display: block;
+}
+
+.inline {
+	display: inline;
+}
+
+#match {
+	font color="green"
+}
