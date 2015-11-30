@@ -7,13 +7,31 @@
 
 <h3>Company Name Here...</h3>
 
-<div class = "truck-review">
+<div id = "trucks" class = "truck-review">
 	<h2>
 		Trucks:
+		 <button type="button" onclick="alert(getTruckInfo())">+Truck</button> 
 	</h2>
 </div>
+
 <div class = "truck-review">
 	<h2>
 		Received Reviews:
+		<!-- print out X amount most recent reviews -->
 	</h2>
 </div>
+
+<div id = "test" class = "truck-review"></div>
+
+<script>
+function getTruckInfo()
+{
+    var license = prompt("Please enter truck license plate", "XXXXXXXX");
+    var email = prompt("Please enter driver email", "johndoe@truck.com");
+    if(license != null && email != null)
+    {
+		document.getElementById("test").innerHTML = license + "       " + email;
+		<!-- store license in db -->
+    }
+}
+</script>
