@@ -4,30 +4,28 @@
 <div class="main">
 	<h1>Settings</h1>
 	<div class="email">
-		<h3>Email</h3>
+		<h3 class="inline">Email</h3>
 		<input type="text" id="email" placeholder="Email Address">
 	</div>
 	<div class="password">
-		<h3>Password</h3>
-		<div><input type="password" id="password_current" placeholder="Current Password"></div>
+		<h3 class="inline">Password</h3>
+		<input type="password" id="password_current" placeholder="Current Password">
 		<br>
 		<div><input type="password" id="password" placeholder="New Password"></div>
 		<div class="inline"><input type="password" id="password_confirm" placeholder="Confirm Password"></div>
 		<p id="match" class="inline"></p>
 	</div>
 	<div class="name">
-		<h3>Name</h3>
+		<h3 class="inline">Name</h3>
 		<input type="text" id="name" placeholder="Name">
 	</div>
 	<div class="image_url">
-		<h3>Image</h3>
+		<h3 class="inline">Image</h3>
 		<input type="text" id="image_url" placeholder="Image URL">
 	</div>
 	<div class="bio">
-		<h3>Bio</h3>
-
-		<textarea rows="4" cols="31" id="bio" placeholder="Bio"></textarea>
-
+		<h3 class="inline">Bio</h3>
+		<textarea rows="5" cols="31" id="bio" placeholder="Bio"></textarea>
 	</div>
 	<br>
 	<button type="button">Submit</button>
