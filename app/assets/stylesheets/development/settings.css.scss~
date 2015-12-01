@@ -6,9 +6,10 @@
 }
 
 .inline {
-	display: inline;
+	display: inline-block;
 }
 
-#match {
-	font color="green"
+.inlineB {
+	display: inline-block;
 }
+
