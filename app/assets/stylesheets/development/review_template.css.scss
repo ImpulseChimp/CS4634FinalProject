@@ -22,15 +22,20 @@
 
   #link-nav-container {
     color: white;
-    width: 200px;
+    width: 100%;
     margin: 0 auto;
 
     a {
 
+      border-top: white 1px solid;
+      border-bottom: white 1px solid;
       font-size: 36px;
       text-decoration: none;
       color: white;
+      margin: 50px auto;
+
     div {
+      margin: 50px auto;
 
       span {
         width: 100%;
