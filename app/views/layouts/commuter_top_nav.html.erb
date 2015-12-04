@@ -6,19 +6,19 @@
         </div>
         <div id="search-bar">
           <a href="/"><img src="assets/branding/rr_logo.png"/></a>
-          <input id="site-search-bar" style="text-transform:uppercase" placeholder="enter truck id/license plate"/>
+          <input id="site-search-bar" style="text-transform:uppercase" maxlength="8" placeholder="enter truck id/license plate"/>
           <button id="search-truck-button">Search</button>
         </div>
-        <div id="nav-menu">
-          <ul class="right">
-              <li class="has-dropdown">
-                <a href="#"><i class="fi-widget"></i></a>
-                <ul class="dropdown">
-                  <li><a href="settings">Settings</a></li>
-                  <li><a onclick="logout();">Logout</a></li>
+        <div id="nav-menu" class="wrap">
+            <ul class="right navbar">
+              <li id="menu-selector"><a href="#"></a>
+                <ul>
+                  <li class="nav-list-item"><a href="/reviews">Reviews</a></li>
+                  <li class="nav-list-item"><a href="/settings">Settings</a></li>
+                  <li class="nav-list-item"><a class="logout-button" href="#">Log Out</a></li>
                 </ul>
               </li>
-          </ul>
+            </ul>
         </div>
     </div>
 </div>

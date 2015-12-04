@@ -11,7 +11,8 @@
         <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
         <%= stylesheet_link_tag 'plugins/jquery.dataTables' %>
 
-        <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash' %>
+        <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash' && action != 'dashboard' %>
+        <%= stylesheet_link_tag 'layouts/commuter_dash_top_nav' if home_url == 'comdash' && action == 'dashboard' %>
         <%= stylesheet_link_tag 'layouts/company_side_nav' if home_url == 'compdash'%>
         <%= stylesheet_link_tag 'layouts/trucker_side_nav' if home_url == 'truckerdash'%>
         <%= stylesheet_link_tag 'layouts/landing_top_nav' if home_url == 'no_user' && controller_name != 'admin'%>
