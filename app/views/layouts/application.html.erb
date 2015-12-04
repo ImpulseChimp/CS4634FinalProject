@@ -7,10 +7,10 @@
         %>
         <title>Rig Reviews</title>
 
-        <%= stylesheet_link_tag 'layouts/application.css' %>
-        <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
-        <%= stylesheet_link_tag 'plugins/jquery.dataTables' %>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
 
+      <%= stylesheet_link_tag 'layouts/application.css' %>
+        <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
         <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash' && action != 'dashboard' %>
         <%= stylesheet_link_tag 'layouts/commuter_dash_top_nav' if home_url == 'comdash' && action == 'dashboard' %>
         <%= stylesheet_link_tag 'layouts/company_side_nav' if home_url == 'compdash'%>
@@ -22,6 +22,7 @@
 
         <%= stylesheet_link_tag controller_name + '/' + action %>
         <%= javascript_include_tag 'application.js' %>
+        <%= javascript_include_tag 'Chart.min' %>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     </head>
     <body>

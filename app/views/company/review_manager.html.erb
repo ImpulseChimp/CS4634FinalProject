@@ -1,1 +1,81 @@
-<h1>Review Manager</h1>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
+<%= stylesheet_link_tag 'plugins/dataTables.foundation' %>
+
+<div id="review-summary-container">
+  <div id="summary-section">
+    <h2>Reviews Summary</h2>
+    <span>Total: <%= @company.reviews.all.size %> reviews</span></br>
+    <span>Average Rating: <%= @average_score %>/5</span>
+  </div>
+
+  <div id="review-type-chart-container">
+    <canvas id="type-chart" width="200" height="200"/>
+  </div>
+</div>
+
+<div id="review-list-container">
+  <table id="review-list">
+    <thead>
+        <td>Date</td>
+        <td>Reviewer</td>
+        <td>e-mail</td>
+        <td>truck license</td>
+        <td>score</td>
+        <td>type</td>
+        <td>comment</td>
+        <td></td>
+    </thead>
+    <tbody>
+        <% @company.reviews.all.each do |review| %>
+            <tr>
+              <% reviewer = User.where('user_id=?', review.user_id).first %>
+              <td><%= review.created_at %></td>
+              <td><%= reviewer.user_first_name + ' ' + reviewer.user_last_name %></td>
+              <td><%= reviewer.email.email_address %></td>
+              <td><%= Truck.where('truck_id=?', review.truck_id).first.truck_license_plate %></td>
+              <td><%= review.review_score %></td>
+              <td>TBD</td>
+              <td>maybe</td>
+              <td><a onclick="viewReviewPopup('<%= review.review_id %>');">view</a></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div id="view_review_popup" style="display: none;">
+    <h1>REVIEW VIEW</h1>
+  <textarea id="popup_review_text"></textarea>
+</div>
+
+<script>
+  var doughnutData = [
+  {
+  value: <%= @positive_review_count %>,
+  color:"#008000",
+  highlight: "#008F80",
+  label: "Positive"
+  },
+  {
+  value: <%= @negative_review_count %>,
+  color: "#FF0000",
+  highlight: "#FF5A5E",
+  label: "Negative"
+  },
+  {
+  value: <%= @neutral_review_count %>,
+  color: "#FFA500",
+  highlight: "#FFC870",
+  label: "Neutral"
+  }
+
+  ];
+
+  window.onload = function(){
+      var ctx = document.getElementById("type-chart").getContext("2d");
+      window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : false});
+
+      $("#review-list").DataTable({paging: true});
+  };
+
+</script>

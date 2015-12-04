@@ -9,12 +9,35 @@ class CompanyApi < BaseApi
 
     if request['api_method'] == 'create-truck'
       return create_truck
+    elsif request['api_method'] == 'get-review'
+        return get_review
     else
       @response['error'] = 'API Method does not exist'
       @response['success'] = false
       return @response
     end
 
+  end
+
+  def get_review
+    @response = {}
+
+    param_list = %w(review_id)
+    return unsuccessful_response(@response, 'Invalid request') if !valid_api_request('POST', @request['HTTP_type'], param_list, true)
+
+    review = Review.where('review_id=?', @request['review_id']).first
+    return unsuccessful_response(@response, 'no review found') if review.nil?
+
+    reviewer = User.where('user_id=?', review.user_id).first
+
+    @response['reviewer_name'] = reviewer.user_first_name + ' ' + reviewer.user_last_name
+    @response['reviewer_email'] = reviewer.email.email_address
+    @response['review_score'] = review.review_score
+    @response['review_comment'] = review.review_text
+    @response['review_tree'] = review.decision_tree
+    @response['created_at'] = review.created_at
+
+    return successful_response(@response, 'review loaded')
   end
 
   def create_truck

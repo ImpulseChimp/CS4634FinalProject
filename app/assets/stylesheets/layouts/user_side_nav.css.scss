@@ -3,7 +3,7 @@
   width: 300px;
   height: 100%;
   float: left;
-  position: absolute;
+  position: fixed;
   left: 0;
   right-border: soild 3px black;
   box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -12,12 +12,24 @@
   #image-container {
     width: 200px;
     height: 200px;
-    margin: 50px auto;
+    margin: 50px auto 5px auto;
     border: solid 1px black;
 
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+
+  #user-nav-info-container {
+    width: 100%;
+
+    div {
+      width: 200px;
+      text-align: left;
+      overflow-x: hidden;
+      color: white;
+      margin: 0 auto 40px auto;
     }
   }
 
@@ -27,13 +39,15 @@
     margin: 0 auto;
 
     a {
-
-      border-top: white 1px solid;
-      border-bottom: white 1px solid;
-      font-size: 36px;
+      text-align: right;
+      float: right;
+      padding-right: 50px;
+      clear: both;
+      font-size: 30px !important;
       text-decoration: none;
       color: white;
-      margin: 50px auto;
+      width: 81%;
+
 
       div {
         margin: 50px auto;
@@ -50,10 +64,15 @@
     }
 
     a:hover {
-      text-decoration: underline;
+      border-right: solid 3px orangered;
+      border-left: solid 3px orangered;
     }
 
   }
+}
+
+.active-link {
+  color: orangered;
 }
 
 #user-navigation-container:before, #user-navigation-container:after

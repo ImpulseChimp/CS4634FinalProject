@@ -1,0 +1,37 @@
+#review-summary-container {
+  margin: 30px auto 0px auto;
+  width: 1000px;
+  height: 200px;
+
+  #summary-section {
+    display: inline-block;
+  }
+
+  #review-type-chart-container {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    float: right;
+
+  }
+}
+
+#review-list-container {
+  width: 1000px;
+  margin: 50px auto;
+
+  #review-list {
+    width: 100%;
+
+    button {
+      height: 20px !important;
+    }
+  }
+}
+
+#view_review_popup {
+  width: 500px;
+  height: 400px;
+  border-radius: 4px;
+  background-color: whitesmoke;
+}
