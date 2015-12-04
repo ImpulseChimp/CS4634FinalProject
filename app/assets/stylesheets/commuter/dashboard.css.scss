@@ -22,14 +22,14 @@ html, body {
 }
 
 #reviews-container {
-  width: 100%;
-  margin-top: 30px;
+  width: 60%;
+  margin: 30px auto;
   min-height: 300px;
   border: solid 1px black;
 }
 
 #review_table {
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
 
   td {

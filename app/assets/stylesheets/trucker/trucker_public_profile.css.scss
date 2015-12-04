@@ -1,17 +1,17 @@
-.page-container {
-  width: 1210px;
-  height: 100%;
-  margin: 0 auto;
-  border: solid 1px black;
-
-  #truck-description-container {
+ #truck-description-container {
+   margin-bottom: 100px;
 
     #photo-container {
       display: inline-block;
+      margin: 25px 25px 25px 100px;
 
       img {
         width: 300px;
         height: 150px;
+      }
+
+      div {
+        margin: 0 auto;
       }
     }
 
@@ -23,16 +23,15 @@
       }
     }
 
-  }
-}
+ }
 
 #action-container {
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
 }
 
 #review-button {
-  width: 500px;
+  width: 100%;
   height: 65px;
   font-size: 22px;
   margin: 0 auto;

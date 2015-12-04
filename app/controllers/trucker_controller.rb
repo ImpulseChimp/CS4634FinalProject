@@ -1,6 +1,6 @@
 class TruckerController < ApplicationController
 
-  before_filter :validateAuthToken, :verify_trucker, except: [:trucker_public_profile, :no_truck_found, :review]
+  before_filter :validateAuthToken, :verify_trucker, except: [:trucker_public_profile, :no_truck_found, :review_manager]
 
   def dashboard
 
@@ -42,7 +42,7 @@ class TruckerController < ApplicationController
 
   end
 
-  def review
+  def review_manager
     @truck_id = params[:truck_id]
   end
 

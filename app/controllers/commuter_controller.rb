@@ -7,7 +7,7 @@ class CommuterController < ApplicationController
     @reviews = @user.reviews
   end
 
-  def truck_profile
+  def reviews
 
   end
 

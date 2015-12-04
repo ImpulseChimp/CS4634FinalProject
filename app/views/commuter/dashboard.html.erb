@@ -29,7 +29,7 @@
                 <th></th>
             </thead>
             <tbody>
-        <% @reviews.all.each do |review| %>
+        <% @reviews.all.order(:created_at).last(10).each do |review| %>
             <% truck = Truck.where('truck_id=?', review.truck_id).first %>
                 <% company = Company.where('company_id=?', review.company_id).first %>
             <tr>
@@ -42,7 +42,7 @@
         <% end %>
         </tbody>
           </table>
-          <a href="/all-reviews">View all reviews</a>
+          <a href="/reviews">View all reviews</a>
       <% end %>
     </div>
 </div>

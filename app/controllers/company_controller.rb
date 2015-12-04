@@ -6,4 +6,12 @@ class CompanyController < ApplicationController
     @company = get_active_user.company
   end
 
+  def review_manager
+
+  end
+
+  def truck_manager
+
+  end
+
 end
