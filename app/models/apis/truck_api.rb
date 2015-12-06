@@ -9,6 +9,8 @@ class TruckApi < BaseApi
 
     if request['api_method'] == 'get-all-trucks'
       return get_all_trucks
+    elsif request['api_method'] == 'get-truck'
+      return get_truck
     elsif request['api_method'] == 'submit-review'
       return submit_review
     else
@@ -17,6 +19,21 @@ class TruckApi < BaseApi
       return @response
     end
 
+  end
+
+  def get_truck
+    @response = {}
+
+    param_list = %w(truck_id)
+    return unsuccessful_response(@response, 'Invalid request') if !valid_api_request('POST', @request['HTTP_type'], param_list, true)
+
+    truck = Truck.where('truck_id=?', @request['truck_id']).first
+    return unsuccessful_response(@response, 'no truck found') if truck.nil?
+
+    user = User.where('user_id=?', truck.user_id).first
+
+
+    return successful_response(@response, 'truck loaded')
   end
 
   def get_all_trucks

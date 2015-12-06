@@ -8,7 +8,7 @@ class CommuterController < ApplicationController
   end
 
   def reviews
-
+    @reviews = get_active_user.reviews
   end
 
 end

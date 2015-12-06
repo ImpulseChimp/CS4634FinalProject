@@ -1,1 +1,24 @@
-<h1>Your Reviews</h1>
+<div class="dataTable-container">
+    <table id="reviews-table">
+      <thead>
+          <th>License Plate</th>
+          <th>RR Code</th>
+          <th>Company</th>
+          <th>Rating</th>
+          <th></th>
+      </thead>
+      <tbody>
+          <% @reviews.all.each do |review| %>
+              <% truck = Truck.where('truck_id=?', review.truck_id).first %>
+              <% company = Company.where('company_id=?', review.company_id).first %>
+              <tr>
+                <td><%= truck.truck_license_plate %></td>
+                <td><%= truck.truck_code %></td>
+                <td><%= company.company_name %></td>
+                <td><%= review.review_score %></td>
+                <td><a>view</a></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+</div>

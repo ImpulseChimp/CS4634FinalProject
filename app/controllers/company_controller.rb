@@ -23,7 +23,11 @@ class CompanyController < ApplicationController
   end
 
   def truck_manager
+    @company = get_active_user.company
 
+    @positive_review_count = 5;
+    @negative_review_count = 3;
+    @neutral_review_count = 9;
   end
 
 end

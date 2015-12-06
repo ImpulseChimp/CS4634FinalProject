@@ -1,0 +1,3 @@
+$(function() {
+    $("#reviews-table").DataTable();
+});

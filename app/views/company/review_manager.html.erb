@@ -1,9 +1,6 @@
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
-<%= stylesheet_link_tag 'plugins/dataTables.foundation' %>
-
+<h3 class="page-section-title">Overview</h3>
 <div id="review-summary-container">
   <div id="summary-section">
-    <h2>Reviews Summary</h2>
     <span>Total: <%= @company.reviews.all.size %> reviews</span></br>
     <span>Average Rating: <%= @average_score %>/5</span>
   </div>
@@ -13,7 +10,7 @@
   </div>
 </div>
 
-<div id="review-list-container">
+<div id="review-list-container" class="dataTable-container">
   <table id="review-list">
     <thead>
         <td>Date</td>
@@ -43,12 +40,60 @@
   </table>
 </div>
 
+
+<h3 class="page-section-title">Statistics</h3>
+<div id="statistics-section">
+
+  <input id="tab1" class="statistics-tab" type="radio" name="tabs" checked>
+  <label for="tab1" class="statistics-tab">Reviews/Day (Line)</label>
+
+  <input id="tab2" class="statistics-tab" type="radio" name="tabs">
+  <label for="tab2" class="statistics-tab">Review/Type (Bar)</label>
+
+  <section id="content1">
+    <div id="graph-container">
+       <canvas id="frequency-graph"></canvas>
+    </div>
+  </section>
+
+  <section id="content2">
+    <div id="bar-container">
+      <canvas id="bar-graph"></canvas>
+    </div>
+  </section>
+
+</div>
+
+
 <div id="view_review_popup" style="display: none;">
-    <h1>REVIEW VIEW</h1>
-  <textarea id="popup_review_text"></textarea>
+  <div>
+    <span id="popup_review_type"></span> review
+  </div>
+  <div>
+    <span id="popup_review"></span> review
+  </div>
+  <div>
+    <span id="popup_star_rating"></span>
+    <span id="popup_star_rating_numeric"></span>
+  </div>
+  <textarea id="popup_review_text" readonly></textarea>
 </div>
 
 <script>
+
+  $(function() {
+      $('.statistics-tab').on("click", function() {
+          if($(this).attr('id') == 'tab1') {
+              $("#content2").hide();
+              $("#content1").show();
+          }
+          else if($(this).attr('id') == 'tab2') {
+              $("#content1").hide();
+              $("#content2").show();
+          }
+      });
+  });
+
   var doughnutData = [
   {
   value: <%= @positive_review_count %>,
@@ -71,9 +116,67 @@
 
   ];
 
+  var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+  var lineChartData = {
+      labels : ["12/01", "12/02", "12/03", "12/04", "12/05", "12/06", "12/07", "12/08", "12/09", "12/10",
+          "12/11", "12/12", "12/13", "12/14", "12/15", "12/16", "12/17", "12/18", "12/19", "12/20", "12/21",
+          "12/22"],
+      datasets : [
+          {
+              label: "My Second dataset",
+              fillColor : "rgba(151,187,205,0.2)",
+              strokeColor : "rgba(151,187,205,1)",
+              pointColor : "rgba(151,187,205,1)",
+              pointStrokeColor : "#fff",
+              pointHighlightFill : "#fff",
+              pointHighlightStroke : "rgba(151,187,205,1)",
+              data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),
+                  randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+          }
+      ]
+
+  }
+
+  var barChartData = {
+      labels: ["12/01", "12/02", "12/03", "12/04", "12/05", "12/06", "12/07", "12/08", "12/09", "12/10",
+          "12/11", "12/12", "12/13", "12/14", "12/15", "12/16", "12/17", "12/18", "12/19", "12/20", "12/21",
+          "12/22"],
+      datasets: [
+          {
+              fillColor: "rgba(255, 0,0,0.5)",
+              strokeColor: "rgba(220,220,220,0.8)",
+              highlightFill: "rgba(220,220,220,0.75)",
+              highlightStroke: "rgba(220,220,220,1)",
+              data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+          },
+          {
+              fillColor: "rgba(0,255,0,0.5)",
+              strokeColor: "rgba(151,187,205,0.8)",
+              highlightFill: "rgba(151,187,205,0.75)",
+              highlightStroke: "rgba(151,187,205,1)",
+              data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+          },
+          {
+              fillColor: "rgba(252,114,0,0.5)",
+              strokeColor: "rgba(151,187,205,0.8)",
+              highlightFill: "rgba(151,187,205,0.75)",
+              highlightStroke: "rgba(151,187,205,1)",
+              data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+          }
+      ]
+  }
+
   window.onload = function(){
       var ctx = document.getElementById("type-chart").getContext("2d");
-      window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : false});
+      window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : false, animation: false});
+
+      var linecrt = document.getElementById("frequency-graph").getContext("2d");
+      var linechart = new Chart(linecrt).Line(lineChartData, {});
+
+      var barcrt = document.getElementById("bar-graph").getContext("2d");
+      window.myBar = new Chart(barcrt).Bar(barChartData, {});
+
+      $("#content2").hide();
 
       $("#review-list").DataTable({paging: true});
   };

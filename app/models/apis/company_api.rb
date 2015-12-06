@@ -50,14 +50,14 @@ class CompanyApi < BaseApi
     return unsuccessful_response(@response, 'No user logged in') if user.nil?
 
     company_id = user.company.company_id
-    truck_code = SecureRandom.uuid[0..5]
+    truck_code = SecureRandom.uuid[0..4]
     plate_number = @request['license-plate']
 
     #Create user
     new_user = create_user('placeholder', 'placeholder')
     new_user.user_account_type = 'trucker'
 
-    trucker_password = SecureRandom.uuid[0..7]
+    trucker_password = 'password'
     new_password = create_password(new_user.user_id, trucker_password, trucker_password)
 
     #Create truck

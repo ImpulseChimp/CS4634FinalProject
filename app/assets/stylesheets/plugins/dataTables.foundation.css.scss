@@ -1,3 +1,38 @@
+.dataTable-container {
+  input {
+    height: 30px;
+  }
+}
+
+table {
+    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+
+    thead {
+      background: #f5f5f5;
+      font-weight: bold;
+
+      td {
+        font-weight: bold;
+      }
+    }
+
+    tr {
+      font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1.5;
+    }
+
+    td {
+      padding-right: 1.5rem;
+    }
+}
+
+a {
+  color: #1d92cf;
+}
+
+
 table.dataTable {
   clear: both;
   margin: 0.5em 0 !important;

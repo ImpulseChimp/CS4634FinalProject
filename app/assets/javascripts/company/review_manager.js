@@ -9,6 +9,10 @@ function viewReviewPopup(review_id) {
 
     api_request(parameters, function(response){
         if(response['success']) {
+            $("#popup_reviewer_name").text(response['reviewer_name']);
+            $("#popup_reviewer_email").text(response['reviewer_email']);
+            $("#popup_review_type").text(response['review_type']);
+            $("#popup_review_tree").text(response['review_tree']);
             $("#popup_review_text").val(response['review_comment']);
             $("#view_review_popup").bPopup();
         }

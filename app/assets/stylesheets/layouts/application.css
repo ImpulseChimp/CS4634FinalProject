@@ -30,7 +30,6 @@ body {
     width: 1210px;
     height: 100%;
     margin: 0 auto;
-    border: solid 1px black;
 }
 
 @media (max-width: 1200px) {

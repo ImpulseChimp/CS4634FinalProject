@@ -1,24 +1,51 @@
 #page-content {
-  width: 1210px;
+  width: 1200px;
   height: 100%;
   display: inline-block;
   position: relative;
   left: 300px;
   margin-left: 20px;
-  border: solid 1px red;
+}
+
+#side-page-content {
+  width: 75%;
+  height: 100%;
+  left: 300px;
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+  margin-top: 30px;
 }
 
 
-@media (max-width: 1000px) {
-  #page-content {
-    width: 100%;
+@media (max-width: 1300px) {
+
+  #side-page-content {
+    width: 68%;
     height: 100%;
-    margin: 0 auto;
-    left: 0;
+    display: inline-block;
+    position: relative;
+    left: 300px;
+    margin-left: 20px;
   }
 
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
+
+  #page-content {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #side-page-content {
+    width: 95%;
+    height: 100%;
+    display: block;
+    position: inherit;
+    margin: 0 auto;
+  }
 
 }

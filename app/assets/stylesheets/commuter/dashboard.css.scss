@@ -5,10 +5,13 @@ html, body {
   width: 100%;
 }
 
+#user-search-container {
+  margin-bottom: 100px;
+}
+
 #landing-summary {
-  margin-top: 100px;
   color: black;
-  margin: 0 auto;
+  margin: 50px auto;
   width: 400px;
 
   h1 {
@@ -22,10 +25,9 @@ html, body {
 }
 
 #reviews-container {
-  width: 60%;
-  margin: 30px auto;
+  width: 95%;
+  margin: 60px auto;
   min-height: 300px;
-  border: solid 1px black;
 }
 
 #review_table {
@@ -37,7 +39,4 @@ html, body {
     overflow: hidden;
   }
 
-  tr:hover {
-    background-color: #ebe8e9;
-  }
 }
