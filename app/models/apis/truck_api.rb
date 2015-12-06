@@ -69,14 +69,14 @@ class TruckApi < BaseApi
       user_id = user.user_id
     end
 
-    param_list = %w(truck_id star_rating comments decision_tree)
+    param_list = %w(truck_id star_rating comments decision_tree review_type)
     return unsuccessful_response(@response, 'Invalid request') if !valid_api_request('POST', @request['HTTP_type'], param_list, true)
 
     truck = Truck.where('truck_id=?', @request['truck_id']).first
     return unsuccessful_response(@response, 'Truck not found') if truck.nil?
 
     new_review = Review.new(:review_id => SecureRandom.uuid, :truck_id => truck.truck_id,
-             :review_score => @request['star_rating'], :review_text => @request['comments'],
+             :review_score => @request['star_rating'], :review_text => @request['comments'], :review_type => @request['review_type'],
              :decision_tree => @request['decision_tree'], :company_id => truck.company_id, :user_id => user_id)
     new_review.save
 

@@ -3,6 +3,7 @@ $(function() {
 });
 
 var user_history = [];
+var user_numeric_history = [];
 var currentStage = 0;
 
 var positive_driving = ['Good driver', 'other driving things', 'more driving things'];
@@ -24,9 +25,17 @@ function selectOption(option) {
     $( "#review-options-container" ).fadeOut( "slow", function() {
         $(".review-option").remove();
 
+        if(option == 2 && currentStage == 0) {
+            user_numeric_history[0] = 2;
+            $("#review-section-title").text("What do you need to tell the driver?");
+            $( "#review-submission-page" ).fadeIn( "slow", function() {
+                return true;
+            });
+        }
         //If option is moving screen forward
-        if(option >= 0 && (currentStage + 1) < stages.length) {
+        else if(option >= 0 && (currentStage + 1) < stages.length) {
             user_history[currentStage] = stages[currentStage][option + 1];
+            user_numeric_history[currentStage] = option;
             currentStage++;
             updateReviewDisplay();
         }
@@ -35,6 +44,8 @@ function selectOption(option) {
             updateReviewDisplay();
         }
         else { //Final screen has been reached
+            user_history[currentStage] = stages[2][user_numeric_history[0] + 1][user_numeric_history[1]][option];
+            user_numeric_history[currentStage] = option;
             currentStage++;
             updateReviewDisplay();
         }
@@ -47,15 +58,38 @@ function updateReviewDisplay() {
     if(currentStage == stages.length - 1) {
         var displayOptions = '';
 
+        var positive_vs_negative = user_numeric_history[0];
+        var driver_vs_personal = user_numeric_history[1];
+
+        var options;
+
+        if(positive_vs_negative == 0) { //positive choice
+            if(driver_vs_personal == 0) {
+                options = stages[2][1][0];
+            }
+            else {
+                options = stages[2][1][1];
+            }
+        }
+        else { //negative choice
+            if(driver_vs_personal == 0) {
+                options = stages[2][2][0];
+            }
+            else {
+                options = stages[2][2][1];
+            }
+        }
+
         $("#review-section-title").text(stages[currentStage][0]);
 
-        for (var i = 0; i < (stages[2][1][0].length); i++) {
+        for (var i = 0; i < options.length; i++) {
             displayOptions += '<div class="review-option" onclick="selectOption(' + i + ');">';
-            displayOptions += '<span class="option-text">' + stages[2][1][0][i] + '</span>';
+            displayOptions += '<span class="option-text">' + options[i] + '</span>';
             displayOptions += '</div>';
         }
 
-        displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
+        if(currentStage > 0)
+            displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
 
         $('#review-options-container').html(displayOptions);
 
@@ -76,7 +110,8 @@ function updateReviewDisplay() {
             displayOptions += '</div>';
         }
 
-        displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
+        if(currentStage > 0)
+            displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
 
         $('#review-options-container').html(displayOptions);
 
@@ -86,7 +121,7 @@ function updateReviewDisplay() {
         });
     }
     else {
-        alert(user_history);
+        $("#review-section-title").text("How would you rate this driver?");
         $( "#review-submission-page" ).fadeIn( "slow", function() {
             return true;
         });
@@ -111,6 +146,16 @@ function addDefaultOptions() {
 
 function submitReview(){
 
+    var decision_tree = '';
+    if(user_history.length > 1) {
+        for (var i = 0; i < 3; i++) {
+            decision_tree += user_history[i];
+
+            if (i != 2)
+                decision_tree += '/';
+        }
+    }
+
     var parameters = {};
     parameters['version'] = 'v1';
     parameters['api_name'] = 'truck';
@@ -118,7 +163,8 @@ function submitReview(){
     parameters['truck_id'] = location.search.split('truck_id=')[1];
     parameters['star_rating'] = $("#rateYo").rateYo("rating");
     parameters['comments'] = $('#review-comment-text').val();
-    parameters['decision_tree'] = 'good/ok/best_driver';
+    parameters['decision_tree'] = decision_tree;
+    parameters['review_type'] = user_numeric_history[0];
     parameters['HTTP_type'] = 'POST';
 
     api_request(parameters, function(response){
@@ -133,7 +179,4 @@ function submitReview(){
             alert("Error submitting review");
         }
     });
-    //send review
-
-    //change to thank you screen
 }

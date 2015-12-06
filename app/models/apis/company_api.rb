@@ -37,6 +37,13 @@ class CompanyApi < BaseApi
     @response['review_tree'] = review.decision_tree
     @response['created_at'] = review.created_at
 
+    if get_active_user.user_account_type == 'trucker'
+      review.trucker_is_read = 1
+      review.save
+    elsif get_active_user.user_account_type == 'company'
+      review.company_is_read = 1
+    end
+
     return successful_response(@response, 'review loaded')
   end
 

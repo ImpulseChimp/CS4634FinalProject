@@ -3,7 +3,57 @@ class TruckerController < ApplicationController
   before_filter :validateAuthToken, :verify_trucker, except: [:trucker_public_profile, :no_truck_found, :review_manager, :review]
 
   def dashboard
+    @truck = get_active_user.truck
 
+    @average_score = 0
+
+    @reviews_by_day = []
+    @positive_by_day = []
+    @negative_by_day = []
+    @other_by_day = []
+
+    i = 0
+    while i < 26 do
+      @reviews_by_day[i] = 0
+      @positive_by_day[i] = 0
+      @negative_by_day[i] = 0
+      @other_by_day[i] = 0
+      i += 1
+    end
+
+    current_month = Date.today.strftime('%m').to_i
+
+    @truck.reviews.all.each do |r|
+      # Computer average score
+      @average_score += r.review_score
+
+      # Compute review by date
+      date = DateTime.parse(r.created_at.to_s)
+      day = date.strftime('%d').to_i
+      month = date.strftime('%m').to_i
+
+      if month == current_month
+        @reviews_by_day[day - 1] += 1
+      end
+
+      if r.review_type == 0
+        @positive_by_day[day - 1] += 1
+      elsif r.review_type == 1
+        @negative_by_day[day - 1] += 1
+      else
+        @other_by_day[day - 1] += 1
+      end
+
+    end
+
+
+    if @truck.reviews.all.size > 0
+      @average_score = (@average_score/@truck.reviews.all.size).round(1)
+    end
+
+    @positive_review_count = Review.where('review_type=?', 0).all.size
+    @negative_review_count = Review.where('review_type=?', 1).all.size
+    @neutral_review_count = Review.where('review_type=?', 2).all.size
   end
 
   def trucker_public_profile
@@ -32,6 +82,7 @@ class TruckerController < ApplicationController
       else
         @star_rating = 0;
       end
+
     rescue
       redirect_to no_truck_found_path
     end

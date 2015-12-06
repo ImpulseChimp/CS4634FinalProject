@@ -38,7 +38,7 @@
             <%= render :template => 'layouts/trucker_side_nav' if home_url == 'truckerdash' %>
             <%= render :template => 'layouts/landing_top_nav' if home_url == 'no_user' && controller_name != 'admin' %>
 
-            <% if home_url == 'compdash' || home_url == 'trucker' %> <div id="side-page-content"><%= yield %></div><% end %>
+            <% if home_url == 'compdash' || home_url == 'truckerdash' %> <div id="side-page-content"><%= yield %></div><% end %>
             <% if home_url == 'comdash' || home_url == 'no_user'  %> <div id="page-content"><%= yield %></div><% end %>
 
         </div>
