@@ -1,4 +1,8 @@
-<div class="dataTable-container">
+<div id="reviews-summary-container">
+    CONTENT HERE FOR REVIEWS SUMMARY
+</div>
+
+<div id="reviews-table-container" class="dataTable-container">
     <table id="reviews-table">
       <thead>
           <th>License Plate</th>
@@ -16,9 +20,13 @@
                 <td><%= truck.truck_code %></td>
                 <td><%= company.company_name %></td>
                 <td><%= review.review_score %></td>
-                <td><a>view</a></td>
+                <td><a href="#" onclick="viewReviewPopup('<%= review.review_id %>');">view</a></td>
               </tr>
           <% end %>
       </tbody>
     </table>
+</div>
+
+<div id="view_review_popup" style="display: none;">
+
 </div>

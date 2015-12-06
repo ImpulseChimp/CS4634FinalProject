@@ -2,6 +2,7 @@
 
 <div class="page-container">
 
+
   <div id="user-search-container">
     <div id="landing-summary">
       <%= image_tag("branding/rr_logo.png", :id=>'landing_logo') %>
@@ -21,7 +22,7 @@
       <% if @reviews.size == 0 %>
 
       <% else %>
-          Your Recent Reviews (<%= @reviews.size %>)
+          Your Recent 5 Reviews
           <table id="review_table" class="responsive">
             <thead>
                 <th>License Plate</th>
@@ -31,7 +32,7 @@
                 <th></th>
             </thead>
             <tbody>
-        <% @reviews.all.order(:created_at).last(10).each do |review| %>
+        <% @reviews.all.order(:created_at).last(5).each do |review| %>
             <% truck = Truck.where('truck_id=?', review.truck_id).first %>
                 <% company = Company.where('company_id=?', review.company_id).first %>
             <tr>
@@ -39,20 +40,20 @@
                 <td><%= truck.truck_code %></td>
               <td><%= company.company_name %></td>
               <td><%= review.review_score %></td>
-              <td><a>view</a></td>
+              <td><a href="#" onclick="viewReviewPopup('<%= review.review_id %>');">view</a></td>
             </tr>
         <% end %>
         </tbody>
           </table>
-          <a href="/reviews">View all</a>
+          <a href="/reviews">View all (<%= @reviews.size %>)</a>
       <% end %>
     </div>
 </div>
 
 
+<div id="view_review_popup" style="display: none;">
 
-
-
+</div>
 
 
 <script>
