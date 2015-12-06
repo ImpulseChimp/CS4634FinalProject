@@ -4,6 +4,14 @@
  */
 $(function() {
 
+    $("#site-search-bar").keyup(function (e) {
+        if (e.keyCode == 13) {
+            var search_term = $("#site-search-bar").val();
+            if(search_term.length > 0)
+                document.location.href = "http://" + window.location.host + "/" + $("#site-search-bar").val();
+        }
+    });
+
     get_trucks();
 
     function get_trucks() {
