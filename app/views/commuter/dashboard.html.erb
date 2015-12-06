@@ -1,26 +1,29 @@
 <%= stylesheet_link_tag 'global/search_bar_style' %>
 
 <div class="page-container">
+
+
+  <div id="user-search-container">
     <div id="landing-summary">
       <%= image_tag("branding/rr_logo.png", :id=>'landing_logo') %>
       <h1>Search Rig Reviews</h1>
-      <p>Find a truck, leave a review. Simple, fast, effective.</p>
     </div>
 
     <div id="landing-search-container">
       <div>
-        <input id="site-search-bar" style="text-transform:uppercase" placeholder="enter truck id/license plate"/>
+        <input id="site-search-bar" style="text-transform:uppercase" maxlength="8" placeholder="enter truck id/license plate"/>
         <button id="search-truck-button">Search</button>
         <!--<span>For more information hover here</span>-->
       </div>
     </div>
+    </div>
 
-    <div id="reviews-container">
+    <div id="reviews-container" class="dataTable-container">
       <% if @reviews.size == 0 %>
-        You have not reviewed any trucks yet
+
       <% else %>
-          Your Review Summary (<%= @reviews.size %>)
-          <table id="review_table">
+          Your Recent 5 Reviews
+          <table id="review_table" class="responsive">
             <thead>
                 <th>License Plate</th>
                 <th>RR Code</th>
@@ -29,7 +32,7 @@
                 <th></th>
             </thead>
             <tbody>
-        <% @reviews.all.each do |review| %>
+        <% @reviews.all.order(:created_at).last(5).each do |review| %>
             <% truck = Truck.where('truck_id=?', review.truck_id).first %>
                 <% company = Company.where('company_id=?', review.company_id).first %>
             <tr>
@@ -37,30 +40,32 @@
                 <td><%= truck.truck_code %></td>
               <td><%= company.company_name %></td>
               <td><%= review.review_score %></td>
-              <td><button>View</button></td>
+              <td><a href="#" onclick="viewReviewPopup('<%= review.review_id %>');">view</a></td>
             </tr>
         <% end %>
         </tbody>
           </table>
-          <a href="/all-reviews">View all reviews</a>
+          <a href="/reviews">View all (<%= @reviews.size %>)</a>
       <% end %>
     </div>
 </div>
 
 
+<div id="view_review_popup" style="display: none;">
 
-
-
-
-
-
-
-
-
+</div>
 
 
 <script>
     get_trucks();
+
+    $("#site-search-bar").keyup(function (e) {
+        if (e.keyCode == 13) {
+            var search_term = $("#site-search-bar").val();
+            if(search_term.length > 0)
+                document.location.href = "http://" + window.location.host + "/" + $("#site-search-bar").val();
+        }
+    });
 
     function get_trucks() {
         var parameters = {};
@@ -77,6 +82,12 @@
             }
         });
     }
+
+    $("#search-truck-button").on("click", function() {
+        var search_term = $("#site-search-bar").val();
+        if(search_term.length > 0)
+            document.location.href = "http://" + window.location.host + "/" + $("#site-search-bar").val();
+    });
 
     function loadTrucksIntoView(trucks) {
 

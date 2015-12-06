@@ -45,6 +45,9 @@ class UserSetup < ActiveRecord::Migration
       t.column :user_id, :string, :limit => 36
       t.column :review_score, :float
       t.column :review_text, :text
+      t.column :review_type, :integer
+      t.column :trucker_is_read, :integer, :default => 0
+      t.column :company_is_read, :integer, :default => 0
       t.column :decision_tree, :text
       t.column :created_at, :datetime
       t.column :updated_at, :datetime

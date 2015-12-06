@@ -1,17 +1,18 @@
-<div id="landing-nav-bar">
-  <div id="nav-container">
-      <div id="brand-logo">
-        <a href="/"><img src="assets/branding/brand_logo.png"/></a>
-      </div>
 
-      <div id="button-container">
-        <% if controller.action_name != 'signup' %>
-        <button onclick="window.location = 'signup';">Signup</button>
-        <% end %>
+<div id="user-nav-bar">
+  <div id="user-nav-container" class="top-bar-section">
+    <div id="nav-logo">
+      <a href="/"><img src="/assets/branding/brand_logo.png"/></a>
+    </div>
 
-        <% if controller.action_name != 'login' %>
-        <button onclick="window.location = 'login';">Login</button>
-        <% end %>
-      </div>
+    <div id="nav-button-container">
+      <% if controller.action_name != 'signup' %>
+          <button onclick="window.location = 'signup';">Sign Up</button>
+      <% end %>
+
+      <% if controller.action_name != 'login' %>
+          <button onclick="window.location = 'login';">Login</button>
+      <% end %>
+    </div>
   </div>
 </div>

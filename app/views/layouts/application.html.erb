@@ -7,21 +7,26 @@
         %>
         <title>Rig Reviews</title>
 
-        <%= stylesheet_link_tag 'layouts/application.css' %>
-        <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
-        <%= stylesheet_link_tag 'plugins/jquery.dataTables' %>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
 
-        <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash' %>
+      <%= stylesheet_link_tag 'layouts/application.css' %>
+        <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
+        <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash' && action != 'dashboard' %>
+        <%= stylesheet_link_tag 'layouts/commuter_dash_top_nav' if home_url == 'comdash' && action == 'dashboard' %>
         <%= stylesheet_link_tag 'layouts/company_side_nav' if home_url == 'compdash'%>
         <%= stylesheet_link_tag 'layouts/trucker_side_nav' if home_url == 'truckerdash'%>
         <%= stylesheet_link_tag 'layouts/landing_top_nav' if home_url == 'no_user' && controller_name != 'admin'%>
         <%= stylesheet_link_tag 'layouts/admin_top_nav' if controller_name == 'admin' && action != 'login' %>
         <%= stylesheet_link_tag 'layouts/page_layout_top' if home_url == 'comdash' || home_url == 'no_user' %>
         <%= stylesheet_link_tag 'layouts/page_layout_side' if home_url == 'compdash' || home_url == 'truckerdash' %>
-        <%= stylesheet_link_tag 'global/foundation' %>
+        <%= stylesheet_link_tag 'global/responsive-tables' %>
+        <%= stylesheet_link_tag 'plugins/dataTables.foundation' %>
+        <%= stylesheet_link_tag 'plugins/jquery.dataTables' %>
+
 
         <%= stylesheet_link_tag controller_name + '/' + action %>
         <%= javascript_include_tag 'application.js' %>
+        <%= javascript_include_tag 'Chart.min' %>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     </head>
     <body>
@@ -33,14 +38,14 @@
             <%= render :template => 'layouts/trucker_side_nav' if home_url == 'truckerdash' %>
             <%= render :template => 'layouts/landing_top_nav' if home_url == 'no_user' && controller_name != 'admin' %>
 
-            <div id="page-content">
-                <%= yield %>
-            </div>
+            <% if home_url == 'compdash' || home_url == 'truckerdash' %> <div id="side-page-content"><%= yield %></div><% end %>
+            <% if home_url == 'comdash' || home_url == 'no_user'  %> <div id="page-content"><%= yield %></div><% end %>
 
         </div>
     </body>
     <footer>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <%= javascript_include_tag 'global/responsive-tables' %>
         <%= javascript_include_tag 'global/navigation' %>
         <%= javascript_include_tag 'global/search' if home_url == 'comdash' || action == 'index' %>
         <%= javascript_include_tag 'plugins/jquery.bpopup.min' %>

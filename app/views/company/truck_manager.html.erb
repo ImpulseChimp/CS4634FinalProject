@@ -1,0 +1,67 @@
+<h3 class="page-section-title">Overview</h3>
+<div id="review-summary-container">
+  <div id="summary-section">
+    <span>Total: <%= @company.trucks.all.size %> trucks</span></br>
+  </div>
+</div>
+
+<div id="review-list-container" class="dataTable-container">
+  <table id="review-list">
+    <thead>
+    <td>license</td>
+    <td>RR Code</td>
+    <td>contact</td>
+    <td>reviews</td>
+    <td>rating</td>
+    <td></td>
+    </thead>
+    <tbody>
+    <% @company.trucks.all.each do |review| %>
+        <tr>
+          <%
+             truck = Truck.where('truck_id=?', review.truck_id).first
+             user = User.where('user_id=?', review.user_id).first
+          %>
+          <td><%= truck.truck_license_plate %></td>
+          <td><%= truck.truck_code %></td>
+          <td><%= user.email.email_address %></td>
+          <td><%= truck.reviews.all.size %></td>
+          <%
+             rating = 0;
+             if truck.reviews.all.size > 0
+                 truck.reviews.each do |r|
+                    rating += r.review_score
+                 end
+                 rating = (rating/truck.reviews.all.size).round(2)
+             end
+          %>
+          <td><%= rating %></td>
+          <td><a onclick="viewTruckPopup('<%= truck.truck_id %>')">view</a></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div id="view_truck_popup" style="display: none;">
+
+</div>
+
+<script>
+
+    $(function() {
+        $('.statistics-tab').on("click", function() {
+            if($(this).attr('id') == 'tab1') {
+                $("#content2").hide();
+                $("#content1").show();
+            }
+            else if($(this).attr('id') == 'tab2') {
+                $("#content1").hide();
+                $("#content2").show();
+            }
+        });
+
+        $("#review-list").DataTable({paging: true});
+    });
+
+</script>

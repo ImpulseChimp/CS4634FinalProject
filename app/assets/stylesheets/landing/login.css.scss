@@ -1,9 +1,24 @@
 
 #user-login-container{
   border: solid black 1px;
+  border-radius: 7px;
   margin: 10% auto;
   width: 400px;
   height: 400px;
+  box-shadow: 10px 10px 5px #888888;
+
+  img {
+    margin-left: 30px;
+    margin-top: 20px;
+    width: 25px;
+    display: inline-block;
+  }
+
+  h1 {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
 
   button {
     width: 100%;
@@ -56,3 +71,4 @@ h1 {
   width: 15px;
   height: 15px;
 }
+

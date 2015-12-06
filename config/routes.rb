@@ -10,14 +10,20 @@ Rails.application.routes.draw do
   get 'company' => 'development#company_dashboard'
   get 'review_template' => 'development#review_template'
   get 'truck_dashboard' => 'development#truck_dashboard'
-  get 'settings' => 'development#settings'
+  get 'settings' => 'user#settings'
 
   #User routes
   get 'user_settings' => 'user#settings'
 
   get 'comdash' => 'commuter#dashboard'
+  get 'reviews' => 'commuter#reviews'
+
   get 'compdash' => 'company#dashboard'
+  get 'truck-manager' => 'company#truck_manager'
+  get 'review-manager' => 'company#review_manager'
+
   get 'truckerdash' => 'trucker#dashboard'
+  get 'all-reviews' => 'trucker#review_manager'
 
   # ADMIN ROUTES
   get 'admin' => 'admin#login'

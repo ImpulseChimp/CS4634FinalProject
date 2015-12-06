@@ -2,16 +2,17 @@
   <div id="review-container">
 
     <div id="review-title-container">
-      <h1>What type of review is this?</h1>
+      <h1 id="review-section-title"></h1>
     </div>
     <div id="review-options-container">
 
 
     </div>
     <div id="review-submission-page" style="display: none;">
-      <h2>How would you rate this driver?</h2><div id="rateYo"></div>
+      <div id="rateYo"></div>
       <textarea id="review-comment-text" placeholder="add additional comments here"></textarea>
       <button id="submit-review-button" onclick="submitReview();">Submit Review</button>
+      <!--<span onclick="selectOption(-1)">Previous Option</span>-->
     </div>
 
     <div id="review-completed-container" style="display: none;">

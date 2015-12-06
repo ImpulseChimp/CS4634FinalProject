@@ -1,7 +1,7 @@
 #truck-reviews {
   display: inline-block;
   float: right;
-  width: 900px;
+  width: 59%;
   height: 500px;
   border: solid 1px black;
 }
@@ -15,7 +15,7 @@
   display: inline-block;
   float: left;
   height: 500px;
-  min-width: 300px;
+  width: 40%;
   border: solid 1px black;
 
   #trucks-list-header{
@@ -106,23 +106,7 @@
   }
 }
 
-
-@media (max-width: 1000px) {
-
-  #trucks-list-header {
-    width: 100%;
-  }
-
-  #trucks-list-container {
-    width: 39%;
-  }
-
-  #truck-reviews {
-    width: 59%;
-  }
-}
-
-@media (max-width: 800px) {
+@media (max-width: 1300px) {
 
   #trucks-list-header {
     width: 100%;
@@ -136,3 +120,4 @@
     width: 100%;
   }
 }
+

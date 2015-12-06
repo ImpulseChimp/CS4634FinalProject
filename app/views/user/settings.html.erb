@@ -1,8 +1,53 @@
-<h1>User Settings</h1>
 
-<h3>Update User Details</h3>
+<div id="personal-info-container">
+  <div><h2>Personal Info</h2></div>
+  <!-- Image, name, bio -->
+</div>
 
-<h3>Change Password</h3>
+<div class="account-security-container">
+  <div><h2>Account Security</h2></div>
+  <div class="change-email-container">
+    <div><h3>Change Email</h3></div>
+    <div>
+      <div><input placeholder=""/></div>
+      <div><input/></div>
+      <div><input/></div>
+      <div><button>Update e-mail</button></div>
+    </div>
+  </div>
+  <div class="change-email-container">
+    <div><h3>Change Password</h3></div>
+    <div>
+      <div><input/></div>
+      <div><input/></div>
+      <div><input/></div>
+      <div><button>Change Password</button></div>
+    </div>
+  </div>
+</div>
 
-<h3>Change Email</h3>
+<script>
 
+    jQuery('#password_confirm').on('input propertychange paste', function() {
+        var p1 = document.getElementById("password").value;
+        var p2 = document.getElementById("password_confirm").value;
+        if (p1 == p2 && (p1 != "")){
+            document.getElementById("match").innerHTML = "&#9989";
+        }
+        else{
+            document.getElementById("match").innerHTML = "";
+        }
+    });
+
+    jQuery('#password').on('input propertychange paste', function() {
+        var p1 = document.getElementById("password").value;
+        var p2 = document.getElementById("password_confirm").value;
+        if (p1 == p2 && (p1 != "")){
+            document.getElementById("match").innerHTML = "&#9989";
+        }
+        else{
+            document.getElementById("match").innerHTML = "";
+        }
+    });
+
+</script>

@@ -9,12 +9,42 @@ class CompanyApi < BaseApi
 
     if request['api_method'] == 'create-truck'
       return create_truck
+    elsif request['api_method'] == 'get-review'
+        return get_review
     else
       @response['error'] = 'API Method does not exist'
       @response['success'] = false
       return @response
     end
 
+  end
+
+  def get_review
+    @response = {}
+
+    param_list = %w(review_id)
+    return unsuccessful_response(@response, 'Invalid request') if !valid_api_request('POST', @request['HTTP_type'], param_list, true)
+
+    review = Review.where('review_id=?', @request['review_id']).first
+    return unsuccessful_response(@response, 'no review found') if review.nil?
+
+    reviewer = User.where('user_id=?', review.user_id).first
+
+    @response['reviewer_name'] = reviewer.user_first_name + ' ' + reviewer.user_last_name
+    @response['reviewer_email'] = reviewer.email.email_address
+    @response['review_score'] = review.review_score
+    @response['review_comment'] = review.review_text
+    @response['review_tree'] = review.decision_tree
+    @response['created_at'] = review.created_at
+
+    if get_active_user.user_account_type == 'trucker'
+      review.trucker_is_read = 1
+      review.save
+    elsif get_active_user.user_account_type == 'company'
+      review.company_is_read = 1
+    end
+
+    return successful_response(@response, 'review loaded')
   end
 
   def create_truck
@@ -27,14 +57,14 @@ class CompanyApi < BaseApi
     return unsuccessful_response(@response, 'No user logged in') if user.nil?
 
     company_id = user.company.company_id
-    truck_code = SecureRandom.uuid[0..5]
+    truck_code = SecureRandom.uuid[0..4]
     plate_number = @request['license-plate']
 
     #Create user
     new_user = create_user('placeholder', 'placeholder')
     new_user.user_account_type = 'trucker'
 
-    trucker_password = SecureRandom.uuid[0..7]
+    trucker_password = 'password'
     new_password = create_password(new_user.user_id, trucker_password, trucker_password)
 
     #Create truck

@@ -3,7 +3,7 @@
   width: 300px;
   height: 100%;
   float: left;
-  position: absolute;
+  position: fixed;
   left: 0;
   right-border: soild 3px black;
   box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -12,12 +12,24 @@
   #image-container {
     width: 200px;
     height: 200px;
-    margin: 50px auto;
+    margin: 50px auto 5px auto;
     border: solid 1px black;
 
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+
+  #user-nav-info-container {
+    width: 100%;
+
+    div {
+      width: 200px;
+      text-align: left;
+      overflow-x: hidden;
+      color: white;
+      margin: 0 auto 40px auto;
     }
   }
 
@@ -27,13 +39,15 @@
     margin: 0 auto;
 
     a {
-
-      border-top: white 1px solid;
-      border-bottom: white 1px solid;
-      font-size: 36px;
+      text-align: right;
+      float: right;
+      padding-right: 50px;
+      clear: both;
+      font-size: 30px !important;
       text-decoration: none;
       color: white;
-      margin: 50px auto;
+      width: 81%;
+
 
       div {
         margin: 50px auto;
@@ -50,55 +64,15 @@
     }
 
     a:hover {
-      text-decoration: underline;
+      border-right: solid 3px orangered;
+      border-left: solid 3px orangered;
     }
 
   }
 }
 
-#user-top-navigation-container {
-  display: none;
-  width: 100%;
-  height: 60px;
-  background-color: #232f3e;
-  border-bottom: solid 2px black;
-  margin-bottom: 30px;
-
-  #search-bar {
-    display: block;
-    width: 500px;
-    height: 100%;
-    margin: 0 auto;
-    padding-top: 10px;
-
-    img {
-      position: relative;
-      width: 20px;
-      display: inline-block;
-      top: 8px;
-      margin-right: 5px;
-    }
-
-    input {
-      width: 400px;
-      height: 20px;
-      border: 1px solid rgb(185, 185, 185);
-      border-radius: 1px;
-      display: inline-block;
-    }
-
-    button {
-      height: 24px;
-      background: none;
-      color: white;
-      position: relative;
-      left: -5px;
-    }
-
-    button:hover {
-      font-weight: bold;
-    }
-  }
+.active-link {
+  color: orangered;
 }
 
 #user-navigation-container:before, #user-navigation-container:after
@@ -121,12 +95,170 @@
 }
 
 
+#user-nav-bar {
+  display: none;
+  width: 100%;
+  height: 60px;
+  background-color: #232f3e;
+  border-bottom: solid 2px black;
+  margin-bottom: 30px;
+
+
+}
+
+#user-nav-container {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+
+  #nav-logo {
+    display: inline-block;
+    float: left;
+
+    img {
+      height: 60px;
+    }
+  }
+
+  #search-bar {
+    display: inline-block;
+    width: 450px;
+    height: 100%;
+    position: relative;
+    left: 160px;
+    margin-left: 7%;
+    padding-top: 10px;
+
+    img {
+      position: relative;
+      width: 20px;
+      display: inline-block;
+      top: 8px;
+      margin-right: 5px;
+    }
+
+    input {
+      width: 350px;
+      height: 20px;
+      border: 1px solid rgb(185, 185, 185);
+      border-radius: 1px;
+      display: inline-block;
+    }
+
+    button {
+      height: 24px;
+      background: none;
+      color: white;
+      position: relative;
+      left: -5px;
+    }
+
+    button:hover {
+      font-weight: bold;
+    }
+  }
+
+  #nav-menu {
+    display: inline-block;
+    float: right;
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      font-size: 16px;
+    }
+
+  }
+}
+
+
 @media (max-width: 1000px) {
   #user-navigation-container {
     display: none;
   }
 
-  #user-top-navigation-container {
+  #user-nav-bar {
     display: block;
   }
+}
+
+.wrap	{
+  width: 60px; /* Spans the width of the page */
+  height: 60px;
+  margin: 0; /* Ensures there is no space between sides of the screen and the menu */
+  z-index: 99; /* Makes sure that your menu remains on top of other page elements */
+  position: relative;
+}
+
+.navbar	{
+  height: 60px;
+  padding: 0;
+  margin: 0;
+  position: absolute; /* Ensures that the menu doesn’t affect other elements */
+  border-right: 1px solid #232f3e;
+}
+
+.navbar li 	{
+  height: 100%;
+  width: 150px;  /* Each menu item is 150px wide */
+  float: left;  /* This lines up the menu items horizontally */
+  text-align: center;  /* All text is placed in the center of the box */
+  list-style: none;  /* Removes the default styling (bullets) for the list */
+  font: normal bold 12px/1.2em Arial, Verdana, Helvetica;
+  padding: 0;
+  margin: 0;
+  background-color: #232f3e;
+}
+
+.navbar a	{
+  height: 24px;
+  padding: 18px 0;  /* Adds a padding on the top and bottom so the text appears centered vertically */
+  border-left: 1px solid black; /* Creates a border in a slightly lighter shade of blue than the background.  Combined with the right border, this creates a nice effect. */
+  border-right: 1px solid black; /* Creates a border in a slightly darker shade of blue than the background.  Combined with the left border, this creates a nice effect. */
+  text-decoration: none;  /* Removes the default hyperlink styling. */
+  color: white; /* Text color is white */
+  display: block;
+}
+
+.navbar li:hover ul 	{
+  display: block; /* Displays the drop-down box when the menu item is hovered over */
+  position: relative;
+  left: -90px;
+}
+
+.navbar li ul 	{
+  display: none;  /* Hides the drop-down menu */
+  height: auto;
+  margin: 0; /* Aligns drop-down box underneath the menu item */
+  padding: 0; /* Aligns drop-down box underneath the menu item */
+
+}
+
+
+.navbar li ul li {background-color: #232f3e;}
+
+
+.navbar li ul li a 	{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.navbar li ul li a:hover	{background-color: black;}
+
+
+.nav-list-item:hover {
+  background-color: black;
+}
+
+#menu-selector {
+  width: 60px;
+  float: right;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('/assets/menu_arrow.png');
 }

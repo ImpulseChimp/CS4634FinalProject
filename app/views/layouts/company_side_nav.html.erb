@@ -3,15 +3,56 @@
   <div id="image-container">
     <img src="/assets/profilepicture.png"/>
   </div>
-
-  <div id="link-nav-container">
-    <div><a href="/reviews"><span>Reviews</span></a></div>
-    <div><a href="/settings"><span>Settings</span></a></div>
-    <div class="logout-button"><a href="/"><span>Logout</span></a></div>
+  <div id="user-nav-info-container">
+    <div><%= controller.get_active_user.company.company_name %></div>
   </div>
 
+  <div id="link-nav-container">
+    <div><a href="/compdash"><span id="homelink">Home</span></a></div>
+    <div><a href="/truck-manager"><span id="trucklink">Trucks</span></a></div>
+    <div><a href="/review-manager"><span id="reviewlink">Reviews</span></a></div>
+    <div><a href="/settings"><span id="settingslink">Settings</span></a></div>
+    <div class="logout-button"><a href="/"><span>Log Out</span></a></div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">RigReviews, &#169; 2015</div>
+  </div>
 </div>
 
-<div id="user-top-navigation-container">
-  <button class="logout-button">Logout</button>
+<div id="user-nav-bar">
+  <div id="user-nav-container">
+      <div id="nav-logo">
+        <a href="/compdash"><img src="/assets/branding/brand_logo.png"/></a>
+      </div>
+
+      <div id="nav-menu" class="wrap">
+        <ul class="right navbar">
+          <li id="menu-selector"><a href="#"></a>
+            <ul>
+              <li class="nav-list-item"><a href="/compdash">Home</a></li>
+              <li class="nav-list-item"><a href="/truck-manager">Truck Manager</a></li>
+              <li class="nav-list-item"><a href="/review-manager">Review Manager</a></li>
+              <li class="nav-list-item"><a href="/settings">Settings</a></li>
+              <li class="nav-list-item"><a href="#" class="logout-button">Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+  </div>
 </div>
+
+<script>
+  if(window.location.pathname == '/compdash') {
+      $("#homelink").addClass('active-link');
+  }
+  else if(window.location.pathname == '/truck-manager') {
+      $("#trucklink").addClass('active-link');
+  }
+  else if(window.location.pathname == '/review-manager') {
+      $("#reviewlink").addClass('active-link');
+  }
+  else if(window.location.pathname == '/settings') {
+      $("#settingslink").addClass('active-link');
+  }
+</script>
