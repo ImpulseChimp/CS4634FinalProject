@@ -1,9 +1,28 @@
 <h3 class="page-section-title">Overview</h3>
 <div id="review-summary-container">
   <div id="summary-section">
-    <span>Total: <%= @truck.reviews.all.size %> reviews</span></br>
-    <span>Average Rating: <%= @average_score %>/5</span>
+
+    <div class="summary-content-container">
+      <div><h2>Reviews</h2></div>
+      <div><%= @truck.reviews.all.size %></div>
+    </div>
+
+    <div class="summary-content-container">
+      <div><h2>Average Score</h2></div>
+      <div><%= @average_score %></div>
+    </div>
+
+
   </div>
+
+  <style>
+    .summary-content-container {
+        width: 150px;
+        height: 200px;
+        border: solid 1px black;
+        display: inline-block;
+    }
+  </style>
 
   <div id="review-type-chart-container">
     <canvas id="type-chart" width="200" height="200"/>
