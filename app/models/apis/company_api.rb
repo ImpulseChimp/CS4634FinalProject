@@ -54,6 +54,7 @@ class CompanyApi < BaseApi
       review.save
     elsif get_active_user.user_account_type == 'company'
       review.company_is_read = 1
+      review.save
     end
 
     return successful_response(@response, 'review loaded')

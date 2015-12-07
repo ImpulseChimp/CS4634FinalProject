@@ -22,8 +22,7 @@ Rails.application.routes.draw do
   get 'truck-manager' => 'company#truck_manager'
   get 'review-manager' => 'company#review_manager'
 
-  get 'truckerdash' => 'trucker#dashboard'
-  get 'all-reviews' => 'trucker#review_manager'
+  get 'truck-reviews' => 'trucker#review_manager'
 
   # ADMIN ROUTES
   get 'admin' => 'admin#login'

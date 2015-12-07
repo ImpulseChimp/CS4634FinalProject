@@ -1,100 +1,28 @@
-var stages = [
-    ['Positive Review', ['Safe Driving', 'Courteous Behavior']],
-    ['Negative Review', ['Reckless Driving', 'Ran me off the road', 'Unprofessional Behavior']],
-    ['Emergency Situation', ['Truck Warning', 'Tire Warning', 'Rig Warning']]
-];
-var currentStage = 0;
-
-$(function() {
-    addDefaultOptions();
-});
-
-function addDefaultOptions() {
-    var defaultElements = '';
-
-    for(var i = 0; i < stages.length; i++) {
-        defaultElements += '<div class="review-option" onclick="selectOption(' + i + ');">';
-        defaultElements += '<span class="option-text">' + stages[i][0] + '</span>';
-        defaultElements += '</div>';
-    }
-
-    $('#review-options-container').html(defaultElements);
-}
-
-function submitReview(){
-    //validate review
-
+function viewReviewPopup(review_id) {
+    $(".view_review_popup_input").val("");
 
     var parameters = {};
     parameters['version'] = 'v1';
-    parameters['api_name'] = 'truck';
-    parameters['api_method'] = 'submit-review';
-    parameters['truck_id'] = location.search.split('truck_id=')[1];
-    parameters['star_rating'] = $("#rateYo").rateYo("rating");
-    parameters['comments'] = $('#review-comment-text').val();
-    parameters['decision_tree'] = 'good/ok/best_driver';
-    parameters['HTTP_type'] = 'POST';
+    parameters['api_name'] = 'company';
+    parameters['api_method'] = 'get-review';
+    parameters['review_id'] = review_id;
 
     api_request(parameters, function(response){
         if(response['success']) {
-            $( "#review-submission-page" ).fadeOut( "slow", function() {
-                $( "#review-completed-container" ).fadeIn( "slow", function() {
+            $("#popup_reviewer_name").text(response['reviewer_name']);
+            $("#popup_reviewer_email").text(response['reviewer_email']);
+            $("#popup_review_type").text(response['review_type']);
+            $("#popup_review_tree").text(response['review_tree']);
+            $("#popup_review_text").val(response['review_comment']);
+            $("#view_review_popup").bPopup();
 
-                });
-            });
+            if($("#" + review_id + "_is_read").text().indexOf("No") > -1) {
+                $("#" + review_id + "_is_read").text("Yes");
+                $('d').text(parseInt($('#global_unread_reviews').text()) - 1);
+            }
         }
         else {
-            alert("Error submitting review");
+            alert("Error: Problem opening review. Please try again soon.");
         }
     });
-    //send review
-
-    //change to thank you screen
-}
-
-function selectOption(option) {
-
-    $( "#review-options-container" ).fadeOut( "slow", function() {
-
-        $(".review-option").remove();
-
-        //If option is moving screen forward
-        if(option >= 0) {
-            currentStage++;
-            var displayOptions = '';
-            if (currentStage < 2) {
-                var opList = stages[option][1];
-                for (var i = 0; i < stages[option][1].length; i++) {
-                    displayOptions += '<div class="review-option" onclick="selectOption(' + i + ');">';
-                    displayOptions += '<span class="option-text">' + opList[i] + '</span>';
-                    displayOptions += '</div>';
-                }
-
-                displayOptions += '<span onclick="selectOption(-1)">Previous Option</span>';
-
-                $('#review-options-container').html(displayOptions);
-            }
-            else {
-                $( "#review-submission-page" ).fadeIn( "slow", function() {
-                    return true;
-                });
-                $('#review-options-container').html(displayOptions);
-            }
-        }
-        else { //Options is going back one screen
-            currentStage--;
-            if(currentStage == 0) {
-                addDefaultOptions();
-            }
-
-            $('#review-options-container').html(displayOptions);
-        }
-
-
-
-        $( "#review-options-container" ).fadeIn( "slow", function() {
-
-        });
-    });
-
 }

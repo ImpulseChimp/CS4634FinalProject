@@ -1,17 +1,48 @@
 <div id="user-navigation-container">
 
   <div id="image-container">
-    <img src="/assets/profilepicture.png"/>
+    <img src="/assets/truck_default_image.png"/>
+  </div>
+  <div id="user-nav-info-container">
+    <div><%= controller.get_active_user.email.email_address %></div>
   </div>
 
   <div id="link-nav-container">
-    <div><a href="/truckerdash"><span>Home</span></a></div>
-    <div><a href="/settings"><span>Settings</span></a></div>
+    <div><a href="/truck-reviews"><span id="reviewslink">Reviews</span></a></div>
+    <div><a href="/settings"><span id="settingslink">Settings</span></a></div>
     <div class="logout-button"><a href="/"><span>Logout</span></a></div>
   </div>
 
+  <div class="footer">
+    <div class="copyright">RigReviews, &#169; 2015</div>
+  </div>
 </div>
 
-<div id="user-top-navigation-container">
-  <button class="logout-button">Logout</button>
+<div id="user-nav-bar">
+  <div id="user-nav-container">
+    <div id="nav-logo">
+      <a href="/review-manager"><img src="/assets/branding/brand_logo.png"/></a>
+    </div>
+
+    <div id="nav-menu" class="wrap">
+      <ul class="right navbar">
+        <li id="menu-selector"><a href="#"></a>
+          <ul>
+            <li class="nav-list-item"><a href="/truck-reviews">Reviews</a></li>
+            <li class="nav-list-item"><a href="/settings">Settings</a></li>
+            <li class="nav-list-item"><a href="#" class="logout-button">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
+
+<script>
+    if(window.location.pathname == '/truck-reviews') {
+        $("#reviewslink").addClass('active-link');
+    }
+    else if(window.location.pathname == '/settings') {
+        $("#settingslink").addClass('active-link');
+    }
+</script>

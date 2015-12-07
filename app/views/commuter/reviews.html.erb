@@ -1,5 +1,21 @@
-<div id="reviews-summary-container">
-    CONTENT HERE FOR REVIEWS SUMMARY
+<div id="review-summary-container">
+
+  <div class="summary-content-container">
+    <div class="stat_title"><h3>Reviews</h3></div>
+    <div  class="stat_body"><%= @reviews.all.size %></div>
+  </div>
+
+  <div class="summary-content-container">
+    <div class="stat_title"><h3>Average Score</h3></div>
+    <div class="stat_body"><%= @average_score %></div>
+  </div>
+
+
+  <div id="review-type-chart-container">
+    <canvas id="type-chart"></canvas>
+    <div><h3 >Reviews by Type</h3></div>
+  </div>
+
 </div>
 
 <div id="reviews-table-container" class="dataTable-container">
@@ -30,3 +46,34 @@
 <div id="view_review_popup" style="display: none;">
 
 </div>
+
+<script>
+    var doughnutData = [
+        {
+            value: <%= @positive_review_count %>,
+            color:"#008000",
+            highlight: "#008F80",
+            label: "Positive"
+        },
+        {
+            value: <%= @negative_review_count %>,
+            color: "#FF0000",
+            highlight: "#FF5A5E",
+            label: "Negative"
+        },
+        {
+            value: <%= @neutral_review_count %>,
+            color: "#FFA500",
+            highlight: "#FFC870",
+            label: "Neutral"
+        }
+
+    ];
+
+
+    window.onload = function(){
+        var ctx = document.getElementById("type-chart").getContext("2d");
+        window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : false, animation: false});
+    };
+
+</script>

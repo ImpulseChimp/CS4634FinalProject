@@ -1,55 +1,339 @@
-.page-container {
-  height: 100%;
-  width: 100%;
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+
+.page-section-title {
+  width: 200px;
+  text-align: right;
+  left: -19px;
+  position: relative;
+  color: black;
+  margin-bottom: 25px;
+  border-bottom: orange solid 5px;
+  font-size: 1.6875rem;
+  line-height: 1.4;
+  font-family:"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+  font-style: normal;
+  font-weight: normal;
 }
 
-#review-title-container {
-  h1 {
-    margin: 0 auto;
-  }
-}
-
-#review-container {
-  background-color: #ebe8e9;
-  margin: 0 auto;
-  width: 80%;
-  height: 100%;
-  display: block;
-}
-
-#review-options-container {
-  width: 80%;
-  margin: 20px auto;
+#overview-content-container {
+  width: 95%;
+  padding: 25px;
   border: solid 1px black;
+  box-shadow: 5px 5px 5px #888;
+  border-radius: 4px;
+  margin-bottom: 60px;
 }
 
-#review-comment-text {
-  width: 500px;
+#statistics-content-container {
+  width: 95%;
+  padding: 25px;
+  border: solid 1px black;
+  box-shadow: 5px 5px 5px #888;
+  border-radius: 4px;
+  margin-bottom: 60px;
+}
+
+#review-summary-container {
+  width: 95%;
   height: 250px;
-  display: block;
-  margin: 10px auto;
-}
-
-#submit-review-button {
-  width: 500px;
-  height: 45px;
   margin: 0 auto;
-}
 
-.review-option {
-  width: 100%;
-  margin: 10px 0px;
-  height: 75px;
-  border: solid 1px black;
-  border-radius: 5px;
+  .summary-content-container {
+    position: relative;
+    top: 0;
+    width: 150px;
+    height: 200px;
+    border: solid 1px black;
+    display: inline-block;
+    margin-left: 25px;
+    box-shadow: 5px 5px 5px #888;
 
-  .option-text {
+    .stat_title {
+      height: 20%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background-color: grey;
+    }
 
+    .stat_body {
+      width: 100%;
+      height: 80%;
+      text-align: center;
+      padding-top: 50px;
+      font-size: 36px;
+    }
+  }
+
+  .summary-company-container {
+
+    width: 300px;
+    height: 200px;
+    border: solid 1px black;
+    display: inline-block;
+    margin-left: 25px;
+    box-shadow: 5px 5px 5px #888;
+
+    .stat_title {
+      height: 20%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background-color: grey;
+    }
+
+    .stat_body {
+      width: 100%;
+      height: 80%;
+      text-align: center;
+      padding-top: 50px;
+      font-size: 36px;
+    }
+  }
+
+  #review-type-chart-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    display: inline-block;
+    margin-left: 25px;
+    float: right;
+
+    canvas {
+      position: relative;
+      display: block;
+      height: 150px;
+    }
+
+    div {
+      height: 50px;
+      width: 100%;
+      position: relative;
+      top: 20px;
+
+      h3 {
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
   }
 }
 
-.review-option:hover {
-  background-color: orange;
-  border: solid 3px black;
+#statistics-section {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#graph-container {
+  width: 100%;
+  height: 500px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+
+  #frequency-graph {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#bar-container {
+  width: 100%;
+  height: 500px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+
+  #bar-graph {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#review-list-container {
+  width: 95%;
+  margin: 50px auto;
+
+  #review-list {
+    width: 100%;
+
+    button {
+      height: 20px !important;
+    }
+  }
+}
+
+#view_review_popup {
+  width: 500px;
+  height: 400px;
+  border-radius: 4px;
+  background-color: whitesmoke;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  padding: 50px 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+#statistics-section {
+  width: 95%;
+  height: 500px;
+  margin: 50px auto 100px auto;
+}
+
+section {
+  display: block;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label:hover {
+  color: #888;
   cursor: pointer;
+}
+
+input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid orange;
+  border-bottom: 1px solid #fff;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2 {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  label {
+    font-size: 0;
+  }
+
+  label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  label {
+    padding: 15px;
+  }
+}
+
+
+#review-summary-container {
+  width: 95%;
+  height: 250px;
+  margin: 0 auto;
+
+  .summary-content-container {
+    position: relative;
+    top: 0;
+    width: 150px;
+    height: 200px;
+    border: solid 1px black;
+    display: inline-block;
+    margin-left: 25px;
+    box-shadow: 5px 5px 5px #888;
+
+    .stat_title {
+      height: 20%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background-color: grey;
+    }
+
+    .stat_body {
+      width: 100%;
+      height: 80%;
+      text-align: center;
+      padding-top: 50px;
+      font-size: 36px;
+    }
+  }
+
+  .summary-company-container {
+
+    width: 300px;
+    height: 200px;
+    border: solid 1px black;
+    display: inline-block;
+    margin-left: 25px;
+    box-shadow: 5px 5px 5px #888;
+
+    .stat_title {
+      height: 20%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background-color: grey;
+    }
+
+    .stat_body {
+      width: 100%;
+      height: 80%;
+      text-align: center;
+      padding-top: 50px;
+      font-size: 36px;
+    }
+  }
+
+  #review-type-chart-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    display: inline-block;
+    margin-left: 25px;
+    float: right;
+
+    canvas {
+      position: relative;
+      display: block;
+      height: 150px;
+    }
+
+    div {
+      height: 50px;
+      width: 100%;
+      position: relative;
+      top: 20px;
+
+      h3 {
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+  }
 }

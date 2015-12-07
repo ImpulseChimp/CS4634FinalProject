@@ -2,7 +2,9 @@ class TruckerController < ApplicationController
 
   before_filter :validateAuthToken, :verify_trucker, except: [:trucker_public_profile, :no_truck_found, :review_manager, :review]
 
-  def dashboard
+  def review_manager
+    @truck_id = params[:truck_id]
+
     @truck = get_active_user.truck
 
     @average_score = 0
@@ -24,6 +26,9 @@ class TruckerController < ApplicationController
     current_month = Date.today.strftime('%m').to_i
 
     @unread_reviews = 0
+    @positive_review_count = 0
+    @negative_review_count = 0
+    @neutral_review_count = 0
 
     @truck.reviews.all.each do |r|
       # Computer average score
@@ -40,10 +45,13 @@ class TruckerController < ApplicationController
 
       if r.review_type == 0
         @positive_by_day[day - 1] += 1
+        @positive_review_count += 1
       elsif r.review_type == 1
         @negative_by_day[day - 1] += 1
+        @negative_review_count += 1
       else
         @other_by_day[day - 1] += 1
+        @neutral_review_count += 1
       end
 
       if r.trucker_is_read == 0
@@ -57,9 +65,6 @@ class TruckerController < ApplicationController
       @average_score = (@average_score/@truck.reviews.all.size).round(1)
     end
 
-    @positive_review_count = Review.where('review_type=?', 0).all.size
-    @negative_review_count = Review.where('review_type=?', 1).all.size
-    @neutral_review_count = Review.where('review_type=?', 2).all.size
   end
 
   def trucker_public_profile
@@ -103,8 +108,5 @@ class TruckerController < ApplicationController
 
   end
 
-  def review_manager
-    @truck_id = params[:truck_id]
-  end
 
 end
