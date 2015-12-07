@@ -11,9 +11,16 @@ function viewReviewPopup(review_id) {
         if(response['success']) {
             $("#popup_reviewer_name").text(response['reviewer_name']);
             $("#popup_reviewer_email").text(response['reviewer_email']);
+            $("#popup_review_date").text(response['created_at']);
             $("#popup_review_type").text(response['review_type']);
             $("#popup_review_tree").text(response['review_tree']);
-            $("#popup_review_text").val(response['review_comment']);
+            $("#popup_review_text").text(response['review_comment']);
+            $("#star_review_value").text(response['review_score']);
+            $("#star_review").rateYo({
+                rating: response['review_score'],
+                starWidth: "20px",
+                readOnly: true
+        });
             $("#view_review_popup").bPopup();
         }
         else {

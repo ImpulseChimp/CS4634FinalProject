@@ -23,6 +23,8 @@ class TruckerController < ApplicationController
 
     current_month = Date.today.strftime('%m').to_i
 
+    @unread_reviews = 0
+
     @truck.reviews.all.each do |r|
       # Computer average score
       @average_score += r.review_score
@@ -42,6 +44,10 @@ class TruckerController < ApplicationController
         @negative_by_day[day - 1] += 1
       else
         @other_by_day[day - 1] += 1
+      end
+
+      if r.trucker_is_read == 0
+        @unread_reviews += 1
       end
 
     end

@@ -33,9 +33,21 @@ class CompanyApi < BaseApi
     @response['reviewer_name'] = reviewer.user_first_name + ' ' + reviewer.user_last_name
     @response['reviewer_email'] = reviewer.email.email_address
     @response['review_score'] = review.review_score
+
+    review_type = ''
+    if review.review_type == 0
+      review_type = 'Positive'
+    elsif review.review_type == 1
+      review_type = 'Negative'
+    else
+      review_type = 'Other'
+    end
+
+    @response['review_type'] = review_type
+
     @response['review_comment'] = review.review_text
     @response['review_tree'] = review.decision_tree
-    @response['created_at'] = review.created_at
+    @response['created_at'] = review.created_at.strftime('%v')
 
     if get_active_user.user_account_type == 'trucker'
       review.trucker_is_read = 1
