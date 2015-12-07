@@ -51,8 +51,13 @@ body {
 }
 
 .rr-submit-button {
-    border: none;
+    border: 4px transparent;
     background: #232f3e;
     color: orange;
     font-weight: bold;
+}
+
+.rr-submit-button:hover {
+    border-top: 4px solid #232f3e;
+    border-bottom: 4px solid orange;
 }
