@@ -1,13 +1,27 @@
 <h3 class="page-section-title">Overview</h3>
+
 <div id="review-summary-container">
-  <div id="summary-section">
-    <span>Total: <%= @company.reviews.all.size %> reviews</span></br>
-    <span>Average Rating: <%= @average_score %>/5</span>
+
+  <div class="summary-content-container">
+    <div class="stat_title"><h3>Reviews</h3></div>
+    <div  class="stat_body"><%= @company.reviews.all.size %></div>
+  </div>
+
+  <div class="summary-content-container">
+    <div class="stat_title"><h3>Average Score</h3></div>
+    <div class="stat_body"><%= @average_score %></div>
+  </div>
+
+  <div class="summary-content-container">
+    <div class="stat_title"><h3>Unread</h3></div>
+    <div id="global_unread_reviews" class="stat_body"><%= @unread_reviews %></div>
   </div>
 
   <div id="review-type-chart-container">
-    <canvas id="type-chart" width="200" height="200"/>
+    <canvas id="type-chart"></canvas>
+    <div><h3 >Reviews by Type</h3></div>
   </div>
+
 </div>
 
 <div id="review-list-container" class="dataTable-container">
@@ -20,19 +34,41 @@
         <td>score</td>
         <td>type</td>
         <td>comment</td>
+        <td>read</td>
         <td></td>
     </thead>
     <tbody>
         <% @company.reviews.all.each do |review| %>
             <tr>
               <% reviewer = User.where('user_id=?', review.user_id).first %>
-              <td><%= review.created_at %></td>
+              <td><%= review.created_at.strftime('%v') %></td>
               <td><%= reviewer.user_first_name + ' ' + reviewer.user_last_name %></td>
               <td><%= reviewer.email.email_address %></td>
               <td><%= Truck.where('truck_id=?', review.truck_id).first.truck_license_plate %></td>
               <td><%= review.review_score %></td>
-              <td>TBD</td>
-              <td>maybe</td>
+              <td>
+                <% if review.review_type == 0 %>
+                    Positive
+                <% elsif review.review_type == 1 %>
+                    Negative
+                <% else %>
+                    Other
+                <% end %>
+              </td>
+              <td>
+                <% if review.review_text.size > 0 %>
+                    Yes
+                <% else %>
+                    No
+                <% end %>
+              </td>
+              <td id="<%= review.review_id %>_is_read">
+                <% if review.company_is_read == 1 %>
+                    Yes
+                <% else %>
+                    No
+                <% end %>
+              </td>
               <td><a onclick="viewReviewPopup('<%= review.review_id %>');">view</a></td>
             </tr>
         <% end %>

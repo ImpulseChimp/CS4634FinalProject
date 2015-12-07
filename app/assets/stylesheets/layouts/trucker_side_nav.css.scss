@@ -1,1 +1,18 @@
 @import 'user_side_nav';
+
+.menu-icon {
+  height: 50px;
+}
+
+.footer {
+  width: 100%;
+  height: 50px;
+
+  .copyright{
+    position: absolute;
+    bottom: 0;
+    margin-left: 75px;
+    margin-bottom: 15px;
+    color: white;
+  }
+}

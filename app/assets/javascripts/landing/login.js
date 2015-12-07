@@ -48,7 +48,7 @@ function attempt_login() {
             if(response['account_type'] == 'commuter')
                 window.location = 'comdash';
             else if(response['account_type'] == 'company')
-                window.location = 'compdash';
+                window.location = 'truck-manager';
             else
                 window.location = 'truckerdash';
 

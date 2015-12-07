@@ -15,6 +15,11 @@ function viewReviewPopup(review_id) {
             $("#popup_review_tree").text(response['review_tree']);
             $("#popup_review_text").val(response['review_comment']);
             $("#view_review_popup").bPopup();
+
+            if($("#" + review_id + "_is_read").text().indexOf("No") > -1) {
+                $("#" + review_id + "_is_read").text("Yes");
+                $('#global_unread_reviews').text(parseInt($('#global_unread_reviews').text()) - 1);
+            }
         }
         else {
             alert("Error: Problem opening review. Please try again soon.");

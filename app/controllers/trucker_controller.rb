@@ -2,7 +2,9 @@ class TruckerController < ApplicationController
 
   before_filter :validateAuthToken, :verify_trucker, except: [:trucker_public_profile, :no_truck_found, :review_manager, :review]
 
-  def dashboard
+  def review_manager
+    @truck_id = params[:truck_id]
+
     @truck = get_active_user.truck
 
     @average_score = 0
@@ -103,8 +105,5 @@ class TruckerController < ApplicationController
 
   end
 
-  def review_manager
-    @truck_id = params[:truck_id]
-  end
 
 end
