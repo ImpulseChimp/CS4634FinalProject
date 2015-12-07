@@ -50,7 +50,7 @@ function attempt_login() {
             else if(response['account_type'] == 'company')
                 window.location = 'truck-manager';
             else
-                window.location = 'truckerdash';
+                window.location = 'truck-reviews';
 
         }
         else{

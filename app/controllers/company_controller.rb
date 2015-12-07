@@ -28,6 +28,9 @@ class CompanyController < ApplicationController
     current_month = Date.today.strftime('%m').to_i
 
     @unread_reviews = 0
+    @positive_review_count = 0
+    @negative_review_count = 0
+    @neutral_review_count = 0
 
     @company.reviews.all.each do |r|
       # Computer average score
@@ -44,10 +47,13 @@ class CompanyController < ApplicationController
 
       if r.review_type == 0
         @positive_by_day[day - 1] += 1
+        @positive_review_count += 1
       elsif r.review_type == 1
         @negative_by_day[day - 1] += 1
+        @negative_review_count += 1
       else
         @other_by_day[day - 1] += 1
+        @neutral_review_count += 1
       end
 
       if r.company_is_read == 0
@@ -61,17 +67,11 @@ class CompanyController < ApplicationController
       @average_score = (@average_score/@company.reviews.all.size).round(1)
     end
 
-    @positive_review_count = 5;
-    @negative_review_count = 3;
-    @neutral_review_count = 9;
   end
 
   def truck_manager
     @company = get_active_user.company
 
-    @positive_review_count = 5;
-    @negative_review_count = 3;
-    @neutral_review_count = 9;
   end
 
 end
