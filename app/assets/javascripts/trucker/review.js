@@ -6,17 +6,17 @@ var user_history = [];
 var user_numeric_history = [];
 var currentStage = 0;
 
-var positive_driving = ['Good driver', 'other driving things', 'more driving things'];
-var positive_personal = ['Good driver', 'other personal things', 'more personal things'];
+var positive_driving = ['Safe Driving', 'Courteous Driving', 'Other'];
+var positive_personal = ['Driver was respectful', 'Driver was aware', 'Other'];
 var positive = [positive_driving, positive_personal];
 
-var negative_driving = ['Bad driver', 'other driving things', 'more driving things'];
-var negative_personal = ['Bad personal', 'other personal things', 'more personal things'];
+var negative_driving = ['Aggressive Driving', 'Reckless Driving', 'Other'];
+var negative_personal = ['Driver was rude', 'Driver was inappropriate', 'Other'];
 var negative = [negative_driving, negative_personal];
 
-var stage_one = ['This review is...', 'Positive', 'Negative', 'Emergency Situation'];
-var stage_two = ['This review is about', 'Truckers Driving', 'The Trucker Personally'];
-var stage_three = ['Please choose a specific reason', positive, negative];
+var stage_one = ['What type of review is this?', 'Positive', 'Negative', 'Emergency Situation'];
+var stage_two = ['This review pertains to...', 'Driving', 'Behavior'];
+var stage_three = ['Please choose a specific reason.', positive, negative];
 
 var stages = [stage_one, stage_two, stage_three];
 

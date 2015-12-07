@@ -27,10 +27,6 @@ class CommuterController < ApplicationController
         @neutral_review_count += 1
       end
 
-      if r.trucker_is_read == 0
-        @unread_reviews += 1
-      end
-
     end
   end
 
