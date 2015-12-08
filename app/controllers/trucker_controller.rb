@@ -75,7 +75,7 @@ class TruckerController < ApplicationController
     end
 
     begin
-      @truck_img_src = '/assets/truck_default_image.png'
+      @truck_img_src = @truck.user.user_profile_picture_id
       @company_name = truck.company.company_name
       @truck_id = truck.truck_id
       @license_plate = truck.truck_license_plate

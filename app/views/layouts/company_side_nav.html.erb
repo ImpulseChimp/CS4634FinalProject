@@ -1,7 +1,7 @@
 <div id="user-navigation-container">
 
   <div id="image-container">
-    <img class="user_profile_photo" src="/assets/profilepicture.png"/>
+    <img class="user_profile_photo" src="<%= controller.get_active_user.user_profile_photo_url %>"/>
   </div>
   <div id="user-nav-info-container">
     <div><%= controller.get_active_user.company.company_name %></div>

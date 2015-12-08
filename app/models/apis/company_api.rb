@@ -76,6 +76,7 @@ class CompanyApi < BaseApi
     #Create user
     new_user = create_user('placeholder', 'placeholder')
     new_user.user_account_type = 'trucker'
+    new_user.user_profile_photo_url = '/assets/truck_default_image'
 
     trucker_password = 'password'
     new_password = create_password(new_user.user_id, trucker_password, trucker_password)

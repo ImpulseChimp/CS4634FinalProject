@@ -79,6 +79,7 @@ class UserAPI < BaseApi
       return unsuccessful_response(@response, 'error creating a new user on server side')
     end
 
+    new_user.user_profile_photo_url = '/assets/profilepicture.png'
     if new_user.user_account_type == 'company'
       comp_uuid = SecureRandom.uuid
       new_user.company_id = comp_uuid

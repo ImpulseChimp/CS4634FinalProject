@@ -24,7 +24,6 @@
     <td>contact</td>
     <td>reviews</td>
     <td>rating</td>
-    <td></td>
     </thead>
     <tbody id="truck-list-body">
     <% @company.trucks.order('created_at ASC').each do |review| %>
@@ -47,7 +46,6 @@
              end
           %>
           <td><%= rating %></td>
-          <td><a onclick="viewTruckPopup('<%= truck.truck_id %>')">view stats</a></td>
         </tr>
     <% end %>
     </tbody>
