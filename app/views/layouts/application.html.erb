@@ -11,6 +11,7 @@
 
       <%= stylesheet_link_tag 'layouts/application.css' %>
         <%= stylesheet_link_tag 'plugins/jquery.rateyo' %>
+        <%= stylesheet_link_tag 'plugins/alertify' %>
         <%= stylesheet_link_tag 'layouts/commuter_top_nav' if home_url == 'comdash' && action != 'dashboard' %>
         <%= stylesheet_link_tag 'layouts/commuter_dash_top_nav' if home_url == 'comdash' && action == 'dashboard' %>
         <%= stylesheet_link_tag 'layouts/company_side_nav' if home_url == 'compdash'%>
@@ -45,6 +46,7 @@
     </body>
     <footer>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <%= javascript_include_tag 'plugins/alertify.min' %>
         <%= javascript_include_tag 'global/responsive-tables' %>
         <%= javascript_include_tag 'global/navigation' %>
         <%= javascript_include_tag 'global/search' if home_url == 'comdash' || action == 'index' %>

@@ -7,7 +7,7 @@ class UserController < ApplicationController
   end
 
   def settings
-
+    @user = get_active_user
   end
 
 end

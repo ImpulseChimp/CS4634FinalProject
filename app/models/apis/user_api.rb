@@ -19,10 +19,24 @@ class UserAPI < BaseApi
       logout
     elsif request['api_method'] == 'register'
       register
+    elsif request['api_method'] == 'update-profile'
+      update_profile
     else
       unsuccessful_response(@response, 'API Method does not exist')
     end
 
+  end
+
+  def update_profile
+    param_list = %w(user_id profile_photo_url)
+    return unsuccessful_response(@response, 'Invalid request') if !valid_api_request('GET', request['HTTP_type'], param_list, true)
+
+    user = User.where('user_id=?', @request['user_id']).first
+
+    user.user_profile_photo_url = @request['profile_photo_url']
+    user.save
+
+    return successful_response(@request, 'Successful save')
   end
 
   def get

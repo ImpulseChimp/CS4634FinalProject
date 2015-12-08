@@ -1,32 +1,48 @@
+<%= stylesheet_link_tag 'user/settings' %>
 
-<div id="personal-info-container">
-  <div><h2>Personal Info</h2></div>
-  <!-- Image, name, bio -->
+<div id="profile-info-container">
+  <div class="settings-title"><h2>Personal Info</h2></div>
+  <div id="settings-photo-container"><img src="<%= @user.user_profile_photo_url %>" class="user_profile_photo"/><input value="<%= @user.user_profile_photo_url %>" id="profile_photo_url" placeholder="profile photo url"/></div>
+  <div></div>
+  <button id="update-profile-button" class="rr-submit-button" onclick="updateProfile('<%= @user.user_id %>');">Update</button>
 </div>
 
 <div class="account-security-container">
-  <div><h2>Account Security</h2></div>
-  <div class="change-email-container">
-    <div><h3>Change Email</h3></div>
-    <div>
-      <div><input placeholder=""/></div>
-      <div><input/></div>
-      <div><input/></div>
-      <div><button>Update e-mail</button></div>
-    </div>
-  </div>
-  <div class="change-email-container">
-    <div><h3>Change Password</h3></div>
-    <div>
-      <div><input/></div>
-      <div><input/></div>
-      <div><input/></div>
-      <div><button>Change Password</button></div>
-    </div>
-  </div>
+    <div class="settings-title"><h2>Change Email</h2></div>
+    <div class="settings-input-container"><input placeholder="new email address"/></div>
+    <div class="settings-input-container"><input placeholder="verify old password" type="password"/></div>
+    <div id="email-button" class="button-container"><button id="email-button" class="rr-submit-button">Change e-mail</button></div>
+</div>
+
+<div class="account-security-container">
+    <div class="settings-title"><h2>Change Password</h2></div>
+    <div class="settings-input-container"><input placeholder="new password" type="password"/></div>
+    <div class="settings-input-container"><input placeholder="confirm new password" type="password"/></div>
+    <div class="settings-input-container"><input placeholder="verify old password" type="password"/></div>
+  <div id="password-button" class="button-container"><button class="rr-submit-button">Change Password</button></div>
 </div>
 
 <script>
+
+    function updateProfile(user_id) {
+
+        var parameters = {};
+        parameters['version'] = 'v1';
+        parameters['api_name'] = 'user';
+        parameters['api_method'] = 'update-profile';
+        parameters['user_id'] = user_id;
+        parameters['profile_photo_url'] = $("#profile_photo_url").val();
+
+        api_request(parameters, function(response){
+            if(response['success']) {
+                $(".user_profile_photo").attr("src", $("#profile_photo_url").val())
+                alertify.success('Profile Updated');
+            }
+            else {
+                alert("Error: Problem opening review. Please try again soon.");
+            }
+        });
+    }
 
     jQuery('#password_confirm').on('input propertychange paste', function() {
         var p1 = document.getElementById("password").value;

@@ -23,7 +23,6 @@
 
   #summary-section {
     display: inline-block;
-
   }
 
   #review-type-chart-container {
@@ -113,10 +112,6 @@ section {
   border-top: 1px solid #ddd;
 }
 
-input {
-  display: none;
-}
-
 label {
   display: inline-block;
   margin: 0 0 -1px;
@@ -170,6 +165,50 @@ input:checked + label {
   width: 95%;
   height: 250px;
   margin: 0 auto;
+
+  #add-truck-content-container {
+    height: 200px;
+    width: 400px;
+    height: 200px;
+    float: left;
+    border: solid 1px black;
+    display: inline-block;
+    box-shadow: 5px 5px 5px #888;
+
+    .content_title {
+      padding-top: 5px;
+      padding-left: 15px;
+      height: 20%;
+      width: 100%;
+      color: white;
+      background-color: darkorange;
+    }
+
+    .input_container_truck {
+      width: 100%;
+      height: 50px;
+
+      input {
+        height: 90%;
+        margin: 5px 60px;
+        font-size: 14pt;
+        width: 65%;
+        color: black;
+        padding-left: 10px;
+      }
+    }
+
+    button {
+      bottom: 0;
+      right: 0;
+      position: relative;
+      width: 100px;
+      top: 15px;
+      margin-right: 10px;
+      height: 35px;
+      float: right;
+    }
+  }
 
   .summary-content-container {
     position: relative;

@@ -1,14 +1,104 @@
-.personal-info-container {
+#profile-info-container {
+  width: 1000px;
+  height: 350px;
+  border: solid 1px black;
+  margin: 15px 50px;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px #888;
 
+  #settings-photo-container {
+    width: 200px;
+    height: 250px;
+
+    img {
+      width: 200px;
+      height: 200px;
+      margin-left: 20px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input {
+      display: block;
+      margin: 0 auto;
+      height: 30px;
+      width: 197px;
+      margin-left: 20px;
+      font-size: 14pt;
+      padding-left: 5px;
+    }
+  }
+
+  button {
+    float: right;
+    bottom: 0;
+    top: 20px;
+    margin-right: 15px;
+    width: 150px;
+    height: 40px;
+  }
 }
 
 .account-security-container {
+  float: left;
+  margin: 15px 50px;
+  width: 450px;
+  display: inline-block;
+  height: 275px;
+  border: solid 1px black;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px #888;
 
-  .change-email-container {
-    display: inline-block;
+  .settings-input-container {
+    width: 100%;
+    margin: 5px 0px;
+
+    input {
+      height: 30px;
+      width: 300px;
+      margin: 5px 75px;
+      font-size: 14pt;
+      padding-left: 5px;
+    }
   }
 
-  .change-password-container {
-    display: inline-block;
+  .button-container {
+    top: 20px;
+    bottom: 0;
+    position: relative;
+    width: 150px;
+    height: 40px;
+
+    button {
+      width: 150px;
+      height: 40px;
+      bottom: 0;
+      float:right;
+      margin: 10px;
+    }
   }
+
+}
+
+.settings-title {
+  color: white;
+  background: grey;
+  width: 100%;
+  height: 35px;
+  border-bottom: solid 1px black;
+
+  h2 {
+    margin: 0 0 0 15px;
+  }
+}
+
+
+#email-button {
+  top: 68px;
+  float: right;
+}
+
+#password-button {
+  float: right;
 }

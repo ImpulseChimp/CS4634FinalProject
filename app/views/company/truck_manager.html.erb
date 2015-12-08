@@ -2,20 +2,22 @@
 
 <div id="review-summary-container">
 
-  <div class="summary-content-container">
-    <div class="stat_title"><h3>Total Trucks</h3></div>
-    <div  class="stat_body"><%= @company.trucks.all.size %></div>
+  <div id="add-truck-content-container">
+    <div class="content_title"><h3>Add Truck</h3></div>
+    <div class="input_container_truck"><input id="driver-email" class="new-truck-input" placeholder="driver email"/></div>
+    <div class="input_container_truck"><input id="license-plate" class="new-truck-input" maxlength="8" placeholder="truck license"/></div>
+    <button id="create-truck-button" class="rr-submit-button">Create</button>
   </div>
 
-  <!--<div id="review-type-chart-container">-->
-    <!--<canvas id="type-chart"></canvas>-->
-    <!--<div><h3 >Reviews by Type</h3></div>-->
-  <!--</div>-->
+  <div class="summary-content-container">
+    <div class="stat_title"><h3>Total Trucks</h3></div>
+    <div id="global_truck_count" class="stat_body"><%= @company.trucks.all.size %></div>
+  </div>
 
 </div>
 
 <div id="review-list-container" class="dataTable-container">
-  <table id="review-list" class="responsive">
+  <table id="truck-list" class="responsive">
     <thead>
     <td>license</td>
     <td>RR Code</td>
@@ -24,8 +26,8 @@
     <td>rating</td>
     <td></td>
     </thead>
-    <tbody>
-    <% @company.trucks.all.each do |review| %>
+    <tbody id="truck-list-body">
+    <% @company.trucks.order('created_at ASC').each do |review| %>
         <tr>
           <%
              truck = Truck.where('truck_id=?', review.truck_id).first
@@ -70,7 +72,7 @@
             }
         });
 
-        $("#review-list").DataTable({paging: true});
+        $("#truck-list").DataTable({paging: true});
     });
 
 </script>

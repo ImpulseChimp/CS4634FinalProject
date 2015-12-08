@@ -207,7 +207,7 @@ class ApplicationController < ActionController::Base
       if user.user_account_type == 'commuter'
         redirect_to comdash_path
       elsif user.user_account_type == 'company'
-        redirect_to compdash_path
+        redirect_to '/truck-manager'
       else
         redirect_to truckerdash_path
       end
