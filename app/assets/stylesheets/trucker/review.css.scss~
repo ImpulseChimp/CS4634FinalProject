@@ -46,10 +46,6 @@
   font-size: 16pt;
 }
 
-#review-completed-container {
-  text-align: center;
-}
-
 #review-button{
 	width: 500px;
 	margin: 0 auto;
@@ -64,8 +60,6 @@
   margin: 0 auto;
   font-size: 14pt;
 }
-
-
 
 .review-option {
   width: 100%;

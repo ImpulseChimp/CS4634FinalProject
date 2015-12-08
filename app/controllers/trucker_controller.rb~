@@ -77,7 +77,7 @@ class TruckerController < ApplicationController
     end
 
     begin
-      @truck_img_src = (User.where('user_id=?', truck.user_id).first).user_profile_photo_url
+      @truck_img_src = (User.where('user_id=?', @truck.user_id).first).user_profile_photo_url
       @company_name = truck.company.company_name
       @truck_id = truck.truck_id
       @license_plate = truck.truck_license_plate

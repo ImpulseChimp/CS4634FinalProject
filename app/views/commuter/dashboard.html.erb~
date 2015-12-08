@@ -3,7 +3,7 @@
 <div class="page-container">
 
 
-  <div id="user-search-container" style="border-radius: 5px;">
+  <div id="user-search-container">
     <div id="landing-summary" style="margin-top: 100px; margin-bottom: 0px;">
       <%= image_tag("branding/rr_logo.png", :id=>'landing_logo') %>
       <h1>Search Rig Reviews</h1>
