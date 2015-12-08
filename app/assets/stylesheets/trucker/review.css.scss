@@ -16,7 +16,7 @@
 #review-container {
   background-color: whitesmoke;
   margin: 0 auto;
-  width: 95%;
+  width: 600px;
   height: 100%;
   display: block;
   height: 500px;
@@ -43,12 +43,22 @@
   height: 250px;
   display: block;
   margin: 10px auto;
+  font-size: 16pt;
 }
 
+#review-button{
+	width: 500px;
+	margin: 0 auto;
+}
+
+#rateYo {
+	margin: 0 auto;
+}
 #submit-review-button {
   width: 500px;
   height: 45px;
   margin: 0 auto;
+  font-size: 14pt;
 }
 
 .review-option {

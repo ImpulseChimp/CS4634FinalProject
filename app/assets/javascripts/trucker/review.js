@@ -83,7 +83,7 @@ function updateReviewDisplay() {
         $("#review-section-title").text(stages[currentStage][0]);
 
         for (var i = 0; i < options.length; i++) {
-            displayOptions += '<div class="rr-submit-button review-option" onclick="selectOption(' + i + ');">';
+            displayOptions += '<div class="review-option" onclick="selectOption(' + i + ');">';
             displayOptions += '<span class="option-text">' + options[i] + '</span>';
             displayOptions += '</div>';
         }
@@ -105,7 +105,7 @@ function updateReviewDisplay() {
         $("#review-section-title").text(stages[currentStage][0]);
 
         for (var i = 0; i < (stages[currentStage].length - 1); i++) {
-            displayOptions += '<div class="rr-submit-button review-option" onclick="selectOption(' + i + ');">';
+            displayOptions += '<div class="review-option" onclick="selectOption(' + i + ');">';
             displayOptions += '<span class="option-text">' + stages[currentStage][i + 1] + '</span>';
             displayOptions += '</div>';
         }
