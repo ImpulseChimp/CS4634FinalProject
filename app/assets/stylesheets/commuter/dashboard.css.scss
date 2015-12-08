@@ -5,8 +5,11 @@ html, body {
   width: 100%;
 }
 
+#page-container {
+  background-image: url("/assets/landing_background.jpg");
+}
+
 #user-search-container {
-  background-image: url('/assets/landing_background.jpg');
   min-height: 700px;
   overflow: hidden;
   background-repeat: no-repeat;
@@ -54,7 +57,24 @@ html, body {
   border-radius: 4px;
   background-color: whitesmoke;
   padding:20px;
+  display:none;
 }
+  #review_truck_info
+  {
+	width: 98%;
+	height: 250px;
+  }
+
+  #truck_and_stars
+  {
+	float: left;
+	clear: both;
+  }
+  
+  #star
+  {
+	text-align: center;
+  }
   
   #decision_tree
   {
@@ -64,6 +84,8 @@ html, body {
   #info
   {
 	float: right;
+	text-align: right;
+	font-size: 20px;
   }
   
   #image
@@ -87,4 +109,16 @@ html, body {
 	width: 98%;
 	height: 100px;
 	float: center;
+  }
+  
+  #comment_review_box
+  {
+	font-size:20px;
+  }
+
+  #popup_review_text
+  {
+	resize: none;
+	float: center;
+	font-size: 20px;
   }
