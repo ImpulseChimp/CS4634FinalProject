@@ -18,7 +18,7 @@ function viewReviewPopup(review_id) {
             $("#star_review_value").text(response['review_score']);
             $("#star_review").rateYo({
                 rating: response['review_score'],
-                starWidth: "20px",
+                starWidth: "50px",
                 readOnly: true
         });
             $("#view_review_popup").bPopup();
