@@ -1,5 +1,13 @@
  #truck-description-container {
    margin-bottom: 100px;
+   border: 1px solid black;
+   border-radius: 7px;
+   box-shadow: 10px 10px 5px rgb(136, 136, 136);
+   background-color: #F5F5F5;
+  #truck-info-container {
+    margin: 15px;
+    text-align: center;
+  }
 
     #photo-container {
       display: inline-block;

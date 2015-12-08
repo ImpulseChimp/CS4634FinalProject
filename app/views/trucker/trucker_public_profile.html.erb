@@ -1,29 +1,33 @@
  <div id="truck-description-container">
+  <div id="truck-info-container" style="text-align: center;">
 
     <div id="photo-container">
       <img src="<%= @truck_img_src %>"/>
       <div id="rateYo"></div>
+      <div id="reviewedBy" style="text-align: center; font-size: 25px;">
+	<span>Reviewed by <%= @review_count %> people</span>
+      </div>
     </div>
 
-    <div id="description-container">
-      <span><label>Company:</label> <%= @company_name %></span>
-      <span><label>License Plate:</label> <%= @license_plate %></span>
-      <span><label>Rig Review Code:</label> <%= @truck_code %></span>
-      <span>Reviewed by <%= @review_count %> people</span>
+    <div id="description-container" style="font-size: 25px;">
+      <span><label><b>Company:</b></label> <%= @company_name %></span>
+      <span><label><b>License Plate:</b></label> <%= @license_plate %></span>
+      <span><label><b>RR Code:</b></label> <%= @truck_code %></span>
     </div>
   </div>
-
-  <div id="action-container">
+  <div id="action-container" style="padding-bottom: 20px;">
     <a href="/review?truck_id=<%= @truck_id %>">
-      <button id="review-button">Write a review</button>
+      <button id="review-button" class="rr-submit-button">Review Me!</button>
     </a>
   </div>
+  </div>
+
 
   <script>
       $(function () {
           $("#rateYo").rateYo({
               rating: <%= @star_rating %>,
-              starWidth: "40px",
+              starWidth: "55px",
               readOnly: true
           });
       });
