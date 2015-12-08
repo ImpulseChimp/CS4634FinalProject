@@ -17,7 +17,11 @@
   </div>
   <div id="action-container" style="padding-bottom: 20px;">
     <a href="/review?truck_id=<%= @truck_id %>">
-      <button id="review-button" class="rr-submit-button">Review Me!</button>
+      <% if !controller.get_active_user.nil? %>
+        <button id="review-button" class="rr-submit-button">Review Me!</button>
+      <% else %>
+          <a href="/signup"><button  id="review-button" class="rr-submit-button">Create an account to leave a review</button></a>
+      <% end %>
     </a>
   </div>
   </div>

@@ -205,11 +205,11 @@ class ApplicationController < ActionController::Base
     user = get_active_user
     if !user.nil?
       if user.user_account_type == 'commuter'
-        redirect_to comdash_path
+        redirect_to '/comdash'
       elsif user.user_account_type == 'company'
         redirect_to '/truck-manager'
       else
-        redirect_to truckerdash_path
+        redirect_to '/review-manager'
       end
       return true
     else

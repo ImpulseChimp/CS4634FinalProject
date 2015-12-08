@@ -1,82 +1,17 @@
 <%= stylesheet_link_tag 'global/search_bar_style' %>
 
-
-
-<div id="landing-summary" style="marign-top: 100px;">
-    <%= image_tag("branding/rr_logo.png", :id=>'landing_logo') %>
-    <h1 style="margin-bottom: 0px;">Search Rig Reviews</h1>
-    <p style="text-align: center; font-size: 15pt; font-weight: bold;">Tracking <span style="color: orange; font-weight: bold;" id="truck_total_value"><%= @total_trucks %></span> trucks and counting</p>
+<div id="landing-summary">
+  <%= image_tag('branding/rr_logo.png', :id=>'landing_logo') %>
+  <h1 style="margin-bottom: 0px;">Search Rig Reviews</h1>
+  <p style="text-align: center; font-size: 15pt; font-weight: bold;">Tracking <span style="color: orange; font-weight: bold;" id="truck_total_value"><%= @total_trucks %></span> trucks and counting</p>
 </div>
 
 <div id="landing-search-container">
   <div>
-      <input id="site-search-bar" style="text-transform:uppercase" maxlength="8" placeholder="enter truck id/license plate"/>
-      <button id="search-truck-button" class="rr-submit-button">Search</button>
-      <!--<span>For more information hover here</span>-->
+    <input id="site-search-bar" style="text-transform:uppercase" maxlength="8" placeholder="enter truck id/license plate"/>
+    <button id="search-truck-button" class="rr-submit-button">Search</button>
+    <!--<span>For more information hover here</span>-->
   </div>
 </div>
 
-<style>
-    #page-content {
-	margin-top: 100px;
-    }
-<style>
-
-<script>
-    get_trucks();
-
-    function get_trucks() {
-        var parameters = {};
-        parameters['version'] = 'v1';
-        parameters['api_name'] = 'truck';
-        parameters['api_method'] = 'get-all-trucks';
-
-        api_request(parameters, function(response){
-            if (response['success']) {
-                loadTrucksIntoView(response['trucks']);
-            }
-            else{
-                alert("Error loading trucks");
-            }
-        });
-    }
-
-    function loadTrucksIntoView(trucks) {
-
-        var processedTrucks = [];
-
-        var i = 0;
-        for (var truck in trucks){
-            processedTrucks[i] = trucks[truck];
-            i++;
-        }
-
-        $( "#site-search-bar" ).autocomplete({
-            minLength: 0,
-            maxLength: 2,
-            source: processedTrucks,
-            focus: function( event, ui ) {
-                $( "#site-search-bar" ).val( ui.item.label );
-                return false;
-            },
-            source: function(request, response) {
-                var results = $.ui.autocomplete.filter(processedTrucks, request.term);
-                response(results.slice(0, 5));
-            },
-            select: function( event, ui ) {
-                document.location.href = "http://" + window.location.host + "/" + ui.item.label;
-                return false;
-            }
-        })
-                .autocomplete( "instance" )._renderItem = function( ul, item ) {
-            return $( "<li>" )
-                    .append( '<a>' + "<b>" + item.label + "</b>" + "<br>" + item.company_name + "</a>" )
-                    .appendTo( ul );
-        };
-    }
-
-
-
-
-
-</script>
+<%= javascript_include_tag 'global/search_bar_functionality' %>
